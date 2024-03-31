@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->float('regular_price')->default(0);
             $table->float('price')->default(0);
             $table->json('images')->nullable();
+            $table->json('tags')->nullable();
             $table->timestamps();
         });
     }

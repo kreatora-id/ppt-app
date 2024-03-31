@@ -21,3 +21,6 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+Route::get('storage/{params1}/{params2?}/{params3?}/{params4?}/{params5?}/{params6?}/{params7?}',
+    [\App\Http\Controllers\ImageController::class, 'show']);
