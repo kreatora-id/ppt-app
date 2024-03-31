@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [Controllers\HomeController::class, 'index'])->name('home.index');
+Route::get('/{slug}', [Controllers\HomeController::class, 'show'])->name('home.show');
 
 
 Route::group(['prefix' => 'admin'], function () {
@@ -23,4 +23,4 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Route::get('storage/{params1}/{params2?}/{params3?}/{params4?}/{params5?}/{params6?}/{params7?}',
-    [\App\Http\Controllers\ImageController::class, 'show']);
+    [Controllers\ImageController::class, 'show'])->name('storage');
