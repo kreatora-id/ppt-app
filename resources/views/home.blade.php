@@ -1,56 +1,57 @@
 @extends('layouts.app')
 
 @section('content')
-    <!-- ======= Header ======= -->
-    <header id="header" class="fixed-top">
-        <div class="container d-flex align-items-center justify-content-between">
-
-            <!--<h1 class="logo"><a href="/">Kreatora</a></h1>-->
-            <!-- Uncomment below if you prefer to use an image logo -->
-            {{--      update home link--}}
-            <a href="/" class="logo"><img src="{{asset('/assets_homepage/img/logo_kreatora.png')}}" alt="" class="img-fluid"></a>
-
-            <nav id="navbar" class="navbar">
-                <ul>
-                    <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-                    <li><a class="nav-link scrollto " href="/blog">Blog</a></li>
-
-                    <li><a class="getstarted scrollto" href="/campaign">App Kreatora</a></li>
-                </ul>
-                <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav><!-- .navbar -->
-
-        </div>
-    </header><!-- End Header -->
-
     <!-- ======= Hero Section ======= -->
-    <section id="hero" class="d-flex align-items-center">
-
+    <section id="hero" class="d-flex align-items-center section-bg">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
-                    <h1>Dari Gamer untuk Gamer</h1>
-                    <h2>Temukan game impian dan berikan bantuan pendanaan agar dapat terwujud.</h2>
-                    <div class="d-flex">
-                        <a href="/campaign" class="btn-get-started scrollto">App Kreatora</a>
-                        <!--a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i
-                            class="bi bi-play-circle"></i><span>Watch Video</span></a-->
+                <div class="col-12 pt-3 pt-lg-0 d-flex flex-column justify-content-center">
+                    <h1>Download template PowerPoint atau Google Slides gratis dan premium pasti disini</h1>
+                    <div class="position-relative my-3">
+                        <input type="text" placeholder="Cari template" class="form-control">
+                        <button class="btn btn-sm btn-link position-absolute" style="right: 6px; top: 0;">
+                            <i class="bi bi-search" style="font-size: 20px"></i>
+                        </button>
                     </div>
-                </div>
-                <div class="col-lg-6 order-1 order-lg-2 hero-img">
-                    <img src="{{asset('/assets_homepage/img/hero-img.png')}}" class="img-fluid animated" alt="">
+                    <div class="my-2">
+                        <label>Tipe Template:</label>
+                        <div class="d-flex mt-1">
+                            <button class="kr-btn-outline-primary active">
+                                <i class="bi bi-cloudy-fill" style="margin-right: 2px;"></i>
+                                Gratis
+                            </button>
+                            <button class="kr-btn-outline-primary">
+                                <i class="bx bxs-crown" style="margin-right: 2px;"></i>
+                                Premium
+                            </button>
+                        </div>
+                    </div>
+                    <div class="my-2">
+                        <label>Cari berdasarkan tag:</label>
+                        <div class="d-flex overflow-auto mt-1 pb-2">
+                            <button class="kr-btn-outline-primary active">Bisnis</button>
+                            <button class="kr-btn-outline-primary">Edukasi</button>
+                            <button class="kr-btn-outline-primary">Komputer</button>
+                            <button class="kr-btn-outline-primary">Chart</button>
+                            <button class="kr-btn-outline-primary active">Bisnis</button>
+                            <button class="kr-btn-outline-primary">Edukasi</button>
+                            <button class="kr-btn-outline-primary">Komputer</button>
+                            <button class="kr-btn-outline-primary">Chart</button>
+                            <button class="kr-btn-outline-primary active">Bisnis</button>
+                            <button class="kr-btn-outline-primary">Edukasi</button>
+                            <button class="kr-btn-outline-primary">Komputer</button>
+                            <button class="kr-btn-outline-primary">Chart</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
     </section><!-- End Hero -->
 
     <main id="main">
-
         <!-- ======= Featured Services Section ======= -->
         <section id="featured-services" class="featured-services">
-            <div class="container mb-4">
-
+            <div class="container my-4">
                 <div class="row">
                     <div class="col-lg-4 col-md-6">
                         <div class="icon-box">
@@ -76,10 +77,9 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
-        </section><!-- End Featured Services Section -->
+        </section>
+        <!-- End Featured Services Section -->
 
         <!-- ======= Services Section ======= -->
         <section id="services" class="services section-bg">
@@ -121,132 +121,118 @@
         </section><!-- End Services Section -->
 
         <!-- ======= Portfolio Section ======= -->
-        <!--section id="portfolio" class="portfolio">
-      <div class="container">
-
-        <div class="section-title">
-          <span>Portfolio</span>
-          <h2>Portfolio</h2>
-          <p>Karya yang sudah rilis</p>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-12 d-flex justify-content-center">
-            <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">App</li>
-              <li data-filter=".filter-card">Card</li>
-              <li data-filter=".filter-web">Web</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="row portfolio-container">
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <img src="{{asset('/assets_homepage/img/portfolio/portfolio-1.jpg')}}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>App 1</h4>
-              <p>App</p>
-              <a href="{{asset('/assets_homepage/img/portfolio/portfolio-1.jpg')}}" data-gallery="portfolioGallery"
-                class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+        <section id="portfolio" class="portfolio">
+          <div class="container">
+            <div class="section-title">
+              <span>Portfolio</span>
+              <h2>Portfolio</h2>
+              <p>Karya yang sudah rilis</p>
+            </div>
+            <div class="row">
+              <div class="col-lg-12 d-flex justify-content-center">
+                <ul id="portfolio-flters">
+                  <li data-filter="*" class="filter-active">All</li>
+                  <li data-filter=".filter-app">App</li>
+                  <li data-filter=".filter-card">Card</li>
+                  <li data-filter=".filter-web">Web</li>
+                </ul>
+              </div>
+            </div>
+            <div class="row portfolio-container">
+              <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                <img src="{{asset('/assets_homepage/img/portfolio/portfolio-1.jpg')}}" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>App 1</h4>
+                  <p>App</p>
+                  <a href="{{asset('/assets_homepage/img/portfolio/portfolio-1.jpg')}}" data-gallery="portfolioGallery"
+                    class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+                <img src="{{asset('/assets_homepage/img/portfolio/portfolio-2.jpg')}}" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Web 3</h4>
+                  <p>Web</p>
+                  <a href="{{asset('/assets_homepage/img/portfolio/portfolio-2.jpg')}}" data-gallery="portfolioGallery"
+                    class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                <img src="{{asset('/assets_homepage/img/portfolio/portfolio-3.jpg')}}" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>App 2</h4>
+                  <p>App</p>
+                  <a href="{{asset('/assets_homepage/img/portfolio/portfolio-3.jpg')}}" data-gallery="portfolioGallery"
+                    class="portfolio-lightbox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                <img src="{{asset('/assets_homepage/img/portfolio/portfolio-4.jpg')}}" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Card 2</h4>
+                  <p>Card</p>
+                  <a href="{{asset('/assets_homepage/img/portfolio/portfolio-4.jpg')}}" data-gallery="portfolioGallery"
+                    class="portfolio-lightbox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+                <img src="{{asset('/assets_homepage/img/portfolio/portfolio-5.jpg')}}" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Web 2</h4>
+                  <p>Web</p>
+                  <a href="{{asset('/assets_homepage/img/portfolio/portfolio-5.jpg')}}" data-gallery="portfolioGallery"
+                    class="portfolio-lightbox preview-link" title="Web 2"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                <img src="{{asset('/assets_homepage/img/portfolio/portfolio-6.jpg')}}" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>App 3</h4>
+                  <p>App</p>
+                  <a href="{{asset('/assets_homepage/img/portfolio/portfolio-6.jpg')}}" data-gallery="portfolioGallery"
+                    class="portfolio-lightbox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                <img src="{{asset('/assets_homepage/img/portfolio/portfolio-7.jpg')}}" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Card 1</h4>
+                  <p>Card</p>
+                  <a href="{{asset('/assets_homepage/img/portfolio/portfolio-7.jpg')}}" data-gallery="portfolioGallery"
+                    class="portfolio-lightbox preview-link" title="Card 1"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                <img src="{{asset('/assets_homepage/img/portfolio/portfolio-8.jpg')}}" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Card 3</h4>
+                  <p>Card</p>
+                  <a href="{{asset('/assets_homepage/img/portfolio/portfolio-8.jpg')}}" data-gallery="portfolioGallery"
+                    class="portfolio-lightbox preview-link" title="Card 3"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+                <img src="{{asset('/assets_homepage/img/portfolio/portfolio-9.jpg')}}" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Web 3</h4>
+                  <p>Web</p>
+                  <a href="{{asset('/assets_homepage/img/portfolio/portfolio-9.jpg')}}" data-gallery="portfolioGallery"
+                    class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
             </div>
           </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <img src="{{asset('/assets_homepage/img/portfolio/portfolio-2.jpg')}}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Web 3</h4>
-              <p>Web</p>
-              <a href="{{asset('/assets_homepage/img/portfolio/portfolio-2.jpg')}}" data-gallery="portfolioGallery"
-                class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <img src="{{asset('/assets_homepage/img/portfolio/portfolio-3.jpg')}}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>App 2</h4>
-              <p>App</p>
-              <a href="{{asset('/assets_homepage/img/portfolio/portfolio-3.jpg')}}" data-gallery="portfolioGallery"
-                class="portfolio-lightbox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <img src="{{asset('/assets_homepage/img/portfolio/portfolio-4.jpg')}}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Card 2</h4>
-              <p>Card</p>
-              <a href="{{asset('/assets_homepage/img/portfolio/portfolio-4.jpg')}}" data-gallery="portfolioGallery"
-                class="portfolio-lightbox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <img src="{{asset('/assets_homepage/img/portfolio/portfolio-5.jpg')}}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Web 2</h4>
-              <p>Web</p>
-              <a href="{{asset('/assets_homepage/img/portfolio/portfolio-5.jpg')}}" data-gallery="portfolioGallery"
-                class="portfolio-lightbox preview-link" title="Web 2"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <img src="{{asset('/assets_homepage/img/portfolio/portfolio-6.jpg')}}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>App 3</h4>
-              <p>App</p>
-              <a href="{{asset('/assets_homepage/img/portfolio/portfolio-6.jpg')}}" data-gallery="portfolioGallery"
-                class="portfolio-lightbox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <img src="{{asset('/assets_homepage/img/portfolio/portfolio-7.jpg')}}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Card 1</h4>
-              <p>Card</p>
-              <a href="{{asset('/assets_homepage/img/portfolio/portfolio-7.jpg')}}" data-gallery="portfolioGallery"
-                class="portfolio-lightbox preview-link" title="Card 1"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <img src="{{asset('/assets_homepage/img/portfolio/portfolio-8.jpg')}}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Card 3</h4>
-              <p>Card</p>
-              <a href="{{asset('/assets_homepage/img/portfolio/portfolio-8.jpg')}}" data-gallery="portfolioGallery"
-                class="portfolio-lightbox preview-link" title="Card 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <img src="{{asset('/assets_homepage/img/portfolio/portfolio-9.jpg')}}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Web 3</h4>
-              <p>Web</p>
-              <a href="{{asset('/assets_homepage/img/portfolio/portfolio-9.jpg')}}" data-gallery="portfolioGallery"
-                class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section--><!-- End Portfolio Section -->
-
-    </main><!-- End #main -->
-
+        </section>
+        <!-- End Portfolio Section -->
+    </main>
+    <!-- End #main -->
 @endsection
