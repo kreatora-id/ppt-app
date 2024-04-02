@@ -16,14 +16,18 @@
                     <div class="my-2">
                         <label>Tipe Template:</label>
                         <div class="d-flex mt-1">
-                            <button class="kr-btn-outline-primary active">
+                            <a href="{{route('home.index', ['type' => 'free'])}}"
+                                class="kr-btn-outline-primary {{ app('request')->input('type') == 'free' ? 'active' : '' }}"
+                            >
                                 <i class="bi bi-cloudy-fill" style="margin-right: 2px;"></i>
                                 Gratis
-                            </button>
-                            <button class="kr-btn-outline-primary">
+                            </a>
+                            <a  href="{{route('home.index', ['type' => 'premium'])}}"
+                                class="kr-btn-outline-primary {{ app('request')->input('type') == 'premium' ? 'active' : '' }}"
+                            >
                                 <i class="bx bxs-crown" style="margin-right: 2px;"></i>
                                 Premium
-                            </button>
+                            </a>
                         </div>
                     </div>
                     <div class="my-2">
