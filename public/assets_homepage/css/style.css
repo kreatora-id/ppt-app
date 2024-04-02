@@ -37,6 +37,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 14px;
     font-weight: 500;
     border: 1px solid #008FD7;
+    text-wrap: nowrap;
 }
 
 .kr-btn-outline-primary:hover {
@@ -320,7 +321,7 @@ h1, h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
-  height: 70vh;
+  height: 60vh;
   padding-top: 82px;
 }
 #hero h1 {
