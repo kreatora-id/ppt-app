@@ -30,7 +30,6 @@
                         <form>
                             <input type="hidden" name="type" value="{{app('request')->input('type')}}">
                             <input type="hidden" name="tags" value="{{app('request')->input('tags')}}">
-                            <input type="hidden" name="page" value="{{app('request')->input('page')}}">
                             <input type="text" placeholder="Cari template" class="form-control" name="search"
                                    value="{{app('request')->input('search')}}">
                             <button type="submit" class="btn btn-sm btn-link position-absolute" style="right: 6px; top: 0;">
@@ -45,7 +44,6 @@
                                     'search' => app('request')->input('search'),
                                     'type' => 'free',
                                     'tags' => app('request')->input('tags'),
-                                    'page' => app('request')->input('page'),
                                 ])}}"
                                class="kr-btn-outline-primary {{ app('request')->input('type') == 'free' ? 'active' : '' }}"
                             >
@@ -56,7 +54,6 @@
                                     'search' => app('request')->input('search'),
                                     'type' => 'premium',
                                     'tags' => app('request')->input('tags'),
-                                    'page' => app('request')->input('page'),
                                 ])}}"
                                class="kr-btn-outline-primary {{ app('request')->input('type') == 'premium' ? 'active' : '' }}"
                             >
@@ -74,7 +71,6 @@
                                         'search' => app('request')->input('search'),
                                         'type' => app('request')->input('type'),
                                         'tags' => convertTags(app('request')->input('tags'), $top),
-                                        'page' => app('request')->input('page'),
                                     ])}}"
                                 >{{$top}}</a>
                             @endforeach
@@ -116,7 +112,11 @@
                     @endforeach
                 </div>
                 <div class="d-flex justify-content-center">
-                    {{ $products->onEachSide(5)->links() }}
+                    {{ $products->appends([
+                        'search' => app('request')->input('search'),
+                        'type' => app('request')->input('type'),
+                        'tags' => app('request')->input('tags')
+                    ])->links() }}
                 </div>
             </div>
         </section>
