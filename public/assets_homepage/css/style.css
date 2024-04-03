@@ -32,24 +32,24 @@ h1, h2, h3, h4, h5, h6 {
     margin-right: 30px;
     border-radius: 4px;
     line-height: 1;
-    color: #008FD7;
+    color: var(--bs-primary);
     background-color: transparent;
     font-size: 14px;
     font-weight: 500;
-    border: 1px solid #008FD7;
+    border: 1px solid var(--bs-primary);
     text-wrap: nowrap;
 }
 
 .kr-btn-outline-primary:hover {
-    background: #008FD7;
+    background: var(--bs-primary);
     color: #fff;
-    border-color: #008FD7;
+    border-color: var(--bs-primary);
 }
 
 .kr-btn-outline-primary.active {
-    background: #008FD7;
+    background: var(--bs-primary);
     color: #fff;
-    border-color: #008FD7;
+    border-color: var(--bs-primary);
 }
 
 /*--------------------------------------------------------------
@@ -62,7 +62,7 @@ h1, h2, h3, h4, h5, h6 {
   right: 15px;
   bottom: 15px;
   z-index: 996;
-  background: #008FD7;
+  background: var(--bs-primary);
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -152,22 +152,22 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: 5px;
 }
 .navbar a:hover, .navbar .active, .navbar .active:focus, .navbar li:hover > a {
-  color: #008FD7;
+  color: var(--bs-primary);
 }
 .navbar .getstarted, .navbar .getstarted:focus {
   padding: 10px 25px;
   margin-left: 30px;
   border-radius: 4px;
   line-height: 1;
-  color: #008FD7;
+  color: var(--bs-primary);
   font-size: 14px;
   font-weight: 500;
-  border: 1px solid #008FD7;
+  border: 1px solid var(--bs-primary);
 }
 .navbar .getstarted:hover, .navbar .getstarted:focus:hover {
-  background: #008FD7;
+  background: var(--bs-primary);
   color: #fff;
-  border-color: #008FD7;
+  border-color: var(--bs-primary);
 }
 .navbar .dropdown ul {
   display: block;
@@ -283,7 +283,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #5f687b;
 }
 .navbar-mobile a:hover, .navbar-mobile .active, .navbar-mobile li:hover > a {
-  color: #008FD7;
+  color: var(--bs-primary);
 }
 .navbar-mobile .getstarted, .navbar-mobile .getstarted:focus {
   margin: 15px;
@@ -321,7 +321,7 @@ h1, h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
-  height: 60vh;
+  height: 75vh;
   padding-top: 82px;
 }
 #hero h1 {
@@ -346,7 +346,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 4px;
   transition: 0.5s;
   color: #fff;
-  background: #008FD7;
+  background: var(--bs-primary);
   box-shadow: 0 8px 28px rgba(32, 107, 251, 0.45);
 }
 #hero .btn-get-started:hover {
@@ -503,7 +503,7 @@ section {
   margin: 0 0 15px 0;
 }
 .featured-services .icon i {
-  color: #008FD7;
+  color: var(--bs-primary);
   font-size: 36px;
 }
 .featured-services .title {
@@ -519,7 +519,7 @@ section {
   border-color: #eaecef;
 }
 .featured-services .icon-box:hover .title a {
-  color: #008FD7;
+  color: var(--bs-primary);
 }
 .featured-services .description {
   line-height: 24px;
@@ -589,7 +589,7 @@ section {
   transition: ease-in-out 0.3s;
 }
 .services .icon-box .icon i {
-  color: #008FD7;
+  color: var(--bs-primary);
   font-size: 36px;
   transition: 0.3s;
 }
@@ -611,7 +611,7 @@ section {
   border-color: #eaecef;
 }
 .services .icon-box:hover h4 a {
-  color: #008FD7;
+  color: var(--bs-primary);
 }
 
 /*--------------------------------------------------------------
@@ -807,6 +807,13 @@ section {
 .testimonials .swiper-pagination .swiper-pagination-bullet-active {
   background-color: #16df7e;
 }
+
+/*List template section*/
+.page-item.active .page-link {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
 
 /*--------------------------------------------------------------
 # Cta

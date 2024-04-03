@@ -16,10 +16,10 @@
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="{{asset('/assets_homepage/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('/assets_homepage/vendor/bootstrap/css/bootstrap.css')}}" rel="stylesheet">
     <link href="{{asset('/assets_homepage/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
     <link href="{{asset('/assets_homepage/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
-    <link href="{{asset('/assets_homepage/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
+{{--    <link href="{{asset('/assets_homepage/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">--}}
     <link href="{{asset('/assets_homepage/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
 
     <!-- Template Main CSS File -->
