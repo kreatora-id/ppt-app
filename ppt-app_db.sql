@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 02 Apr 2024 pada 08.22
+-- Waktu pembuatan: 04 Apr 2024 pada 06.07
 -- Versi server: 8.0.36-0ubuntu0.22.04.1
 -- Versi PHP: 7.4.33
 
@@ -130,16 +130,18 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (55, 6, 'image', 'image', 'Page Image', 0, 1, 1, 1, 1, 1, NULL, 12),
 (56, 8, 'id', 'number', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
 (57, 8, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{}', 2),
-(58, 8, 'description', 'rich_text_box', 'Description', 0, 0, 1, 1, 1, 1, '{}', 3),
-(59, 8, 'faq', 'rich_text_box', 'Faq', 0, 0, 1, 1, 1, 1, '{}', 4),
-(60, 8, 'slug', 'text', 'Slug', 1, 0, 1, 0, 0, 0, '{}', 5),
-(61, 8, 'embed', 'text', 'Embed', 0, 0, 1, 1, 1, 1, '{\"description\":\"Embed dari google drive untuk viewer\"}', 6),
-(62, 8, 'regular_price', 'number', 'Regular Price', 1, 1, 1, 1, 1, 1, '{\"default\":0,\"description\":\"Harga reguler sebelum didiskon\"}', 7),
-(63, 8, 'price', 'number', 'Price', 1, 1, 1, 1, 1, 1, '{\"default\":0,\"description\":\"Harga setelah diskon\"}', 8),
-(64, 8, 'images', 'multiple_images', 'Images', 0, 1, 1, 1, 1, 1, '{}', 10),
-(65, 8, 'created_at', 'timestamp', 'Created At', 0, 0, 1, 0, 0, 0, '{}', 11),
-(66, 8, 'updated_at', 'timestamp', 'Updated At', 0, 0, 1, 0, 0, 0, '{}', 12),
-(67, 8, 'tags', 'select_multiple', 'Tags', 0, 1, 1, 1, 1, 1, '{\"default\":\"\",\"options\":{\"Abstract\":\"Abstract\",\"Business\":\"Business\",\"Computers\":\"Computers\",\"Education\":\"Education\",\"Medical\":\"Medical\",\"Nature\":\"Nature\",\"Finance\":\"Finance\",\"Food\":\"Food\",\"Real Estate\":\"Real Estate\",\"Religion\":\"Religion\",\"Industry\":\"Industry\",\"Sports\":\"Sports\",\"Recreation\":\"Recreation\",\"Military\":\"Military\",\"Travel\":\"Travel\",\"Diagrams\":\"Diagrams\",\"Cycle\":\"Cycle\",\"Relationship\":\"Relationship\",\"Agenda-Org\":\"Agenda-Org\",\"Flow-Pro\":\"Flow-Pro\",\"Stair-Step\":\"Stair-Step\",\"Timeline\":\"Timeline\",\"Charts\":\"Charts\"}}', 9);
+(58, 8, 'description', 'rich_text_box', 'Description', 0, 0, 1, 1, 1, 1, '{}', 4),
+(59, 8, 'faq', 'rich_text_box', 'Faq', 0, 0, 1, 1, 1, 1, '{}', 5),
+(60, 8, 'slug', 'text', 'Slug', 1, 0, 1, 0, 0, 0, '{}', 6),
+(61, 8, 'embed', 'text', 'Embed', 0, 0, 1, 1, 1, 1, '{\"description\":\"Embed dari google drive untuk viewer\"}', 7),
+(62, 8, 'regular_price', 'number', 'Regular Price', 1, 1, 1, 1, 1, 1, '{\"default\":0,\"description\":\"Harga reguler sebelum didiskon\"}', 8),
+(63, 8, 'price', 'number', 'Price', 1, 1, 1, 1, 1, 1, '{\"default\":0,\"description\":\"Harga setelah diskon\"}', 9),
+(64, 8, 'images', 'multiple_images', 'Images', 0, 1, 1, 1, 1, 1, '{}', 11),
+(65, 8, 'created_at', 'timestamp', 'Created At', 0, 0, 1, 0, 0, 0, '{}', 13),
+(66, 8, 'updated_at', 'timestamp', 'Updated At', 0, 0, 1, 0, 0, 0, '{}', 14),
+(67, 8, 'tags', 'select_multiple', 'Tags', 0, 1, 1, 1, 1, 1, '{\"default\":\"\",\"options\":{\"Abstract\":\"Abstract\",\"Business\":\"Business\",\"Computers\":\"Computers\",\"Education\":\"Education\",\"Medical\":\"Medical\",\"Nature\":\"Nature\",\"Finance\":\"Finance\",\"Food\":\"Food\",\"Real Estate\":\"Real Estate\",\"Religion\":\"Religion\",\"Industry\":\"Industry\",\"Sports\":\"Sports\",\"Recreation\":\"Recreation\",\"Military\":\"Military\",\"Travel\":\"Travel\",\"Diagrams\":\"Diagrams\",\"Cycle\":\"Cycle\",\"Relationship\":\"Relationship\",\"Agenda-Org\":\"Agenda-Org\",\"Flow-Pro\":\"Flow-Pro\",\"Stair-Step\":\"Stair-Step\",\"Timeline\":\"Timeline\",\"Charts\":\"Charts\"}}', 10),
+(68, 8, 'type', 'select_dropdown', 'Type', 1, 1, 1, 1, 1, 1, '{\"default\":\"Free\",\"options\":{\"Free\":\"Free\",\"Premium\":\"Premium\"}}', 3),
+(69, 8, 'file', 'file', 'File', 0, 0, 1, 1, 1, 1, '{}', 12);
 
 -- --------------------------------------------------------
 
@@ -176,7 +178,7 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (4, 'categories', 'categories', 'Category', 'Categories', 'voyager-categories', 'TCG\\Voyager\\Models\\Category', NULL, '', '', 1, 0, NULL, '2024-03-30 15:51:50', '2024-03-30 15:51:50'),
 (5, 'posts', 'posts', 'Post', 'Posts', 'voyager-news', 'TCG\\Voyager\\Models\\Post', 'TCG\\Voyager\\Policies\\PostPolicy', '', '', 1, 0, NULL, '2024-03-30 15:51:50', '2024-03-30 15:51:50'),
 (6, 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'TCG\\Voyager\\Models\\Page', NULL, '', '', 1, 0, NULL, '2024-03-30 15:51:50', '2024-03-30 15:51:50'),
-(8, 'products', 'products', 'Product', 'Products', 'voyager-file-text', 'App\\Models\\Product', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2024-03-30 16:25:37', '2024-03-30 20:34:00');
+(8, 'products', 'products', 'Product', 'Products', 'voyager-file-text', 'App\\Models\\Product', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2024-03-30 16:25:37', '2024-04-03 15:55:22');
 
 -- --------------------------------------------------------
 
@@ -301,7 +303,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (26, '2016_01_01_000000_create_posts_table', 3),
 (27, '2016_02_15_204651_create_categories_table', 3),
 (28, '2017_04_11_000000_alter_post_nullable_fields_table', 3),
-(33, '2024_03_30_231147_create_products_table', 4);
+(35, '2024_03_30_231147_create_products_table', 4);
 
 -- --------------------------------------------------------
 
@@ -531,12 +533,14 @@ INSERT INTO `posts` (`id`, `author_id`, `category_id`, `title`, `seo_title`, `ex
 CREATE TABLE `products` (
   `id` bigint UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` enum('Free','Premium') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Free',
   `description` text COLLATE utf8mb4_unicode_ci,
   `faq` text COLLATE utf8mb4_unicode_ci,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `embed` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `regular_price` double(8,2) NOT NULL DEFAULT '0.00',
   `price` double(8,2) NOT NULL DEFAULT '0.00',
+  `file` json DEFAULT NULL,
   `images` json DEFAULT NULL,
   `tags` json DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -547,9 +551,8 @@ CREATE TABLE `products` (
 -- Dumping data untuk tabel `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `description`, `faq`, `slug`, `embed`, `regular_price`, `price`, `images`, `tags`, `created_at`, `updated_at`) VALUES
-(1, 'PPT nomor 1', NULL, NULL, 'ppt_nomor_1_868644', NULL, 0.00, 0.00, '[\"products/March2024/UBD9IChCuaoFyKx0hImK.png\", \"products/March2024/GlEsb8kGV4UdM9VHAVjN.png\"]', '[\"Computers\", \"Education\", \"Timeline\", \"Charts\"]', '2024-03-30 21:28:20', '2024-03-30 21:28:20'),
-(2, 'PPT Nomor 2', NULL, NULL, 'ppt_nomor_2_460100', NULL, 0.00, 0.00, '[\"products/March2024/2FRO1kHRFe9j4uMENJEK.png\", \"products/March2024/zvyxfyUGyDdWqBRfLmkQ.png\", \"products/March2024/wz2PDX2wr9QWh6NDRkDe.png\"]', '[\"Computers\", \"Real Estate\", \"Industry\"]', '2024-03-30 21:28:54', '2024-03-30 21:28:54');
+INSERT INTO `products` (`id`, `name`, `type`, `description`, `faq`, `slug`, `embed`, `regular_price`, `price`, `file`, `images`, `tags`, `created_at`, `updated_at`) VALUES
+(1, 'PPT nomor 1', 'Free', NULL, NULL, 'ppt_nomor_1_761906', NULL, 0.00, 0.00, '[{\"download_link\": \"products/April2024/fkfFsJqqgo0gRNy6hS2C.pptx\", \"original_name\": \"User Guide.pptx\"}]', '[\"products/April2024/CS26PqqYhfYB8VAAlrho.png\"]', '[]', '2024-04-03 16:06:23', '2024-04-03 16:06:23');
 
 -- --------------------------------------------------------
 
@@ -851,7 +854,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT untuk tabel `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT untuk tabel `data_types`
@@ -881,7 +884,7 @@ ALTER TABLE `menu_items`
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT untuk tabel `pages`
@@ -911,7 +914,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT untuk tabel `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `roles`

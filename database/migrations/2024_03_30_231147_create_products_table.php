@@ -16,12 +16,14 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->enum('type', ['Free', 'Premium'])->default('Free');
             $table->text('description')->nullable();
             $table->text('faq')->nullable();
             $table->string('slug');
             $table->string('embed')->nullable();
             $table->float('regular_price')->default(0);
             $table->float('price')->default(0);
+            $table->json('file')->nullable();
             $table->json('images')->nullable();
             $table->json('tags')->nullable();
             $table->timestamps();
