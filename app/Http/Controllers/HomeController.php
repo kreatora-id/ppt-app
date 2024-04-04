@@ -36,8 +36,9 @@ class HomeController extends Controller
         ]);
     }
 
-    public function show()
+    public function show($slug)
     {
-
+        $product = Product::query()->where('slug', $slug)->first();
+        return view('show', ['product' => $product]);
     }
 }

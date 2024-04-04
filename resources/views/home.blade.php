@@ -114,6 +114,12 @@
                                 <p class="description">
                                     {{str_limit(strip_tags($product->description), $limit = 150, $end = '...')}}
                                 </p>
+                                @if($product->tags && count(json_decode($product->tags)))
+                                    <div>
+                                        <i class="bx bx-tag bx-rotate-180" style="margin-right: 5px"></i>
+                                        {{implode(', ', json_decode($product->tags))}}
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     @endforeach
