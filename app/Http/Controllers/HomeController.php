@@ -10,10 +10,10 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        $tag_options = DataRow::query()->where('field', 'tags')->first();
+        $tag_options = DataRow::query()->select('details')->where('field', 'tags')->first();
         $tag_options = $tag_options && $tag_options->details && $tag_options->details->options ? $tag_options->details->options : [];
 
-        $products = Product::query();
+        $products = Product::query()->select(['name', 'description', 'tags', 'type', 'slug', 'images']);
         if ($request->filled('search')) {
             $products = $products->where('name', 'like', '%' . $request->search . '%')
                 ->orWhere('description', 'like', '%' . $request->search . '%');
@@ -38,7 +38,11 @@ class HomeController extends Controller
 
     public function show($slug)
     {
-        $product = Product::query()->where('slug', $slug)->first();
-        return view('show', ['product' => $product]);
+        $detail = Product::query()->where('slug', $slug)->first();
+        $others = Product::query()->select(['name', 'description', 'tags', 'type', 'slug', 'images'])->limit(3)->get();
+        return view('show', [
+            'detail' => $detail,
+            'others' => $others,
+        ]);
     }
 }
