@@ -95,12 +95,19 @@
                     @foreach($products as $product)
                         <div class="col-lg-4 col-md-6 mb-4">
                             <div class="icon-box">
-                                @if($product->images && count(json_decode($product->images)))
-                                    <div class="icon">
+                                <div class="icon position-relative">
+                                    @if($product->type == 'Premium')
+                                        <i class="bx bxs-crown position-absolute"
+                                           style="top:10px; right: 10px; font-size: 32px"
+                                        ></i>
+                                    @endif
+                                    @if($product->images && count(json_decode($product->images)))
                                         <img src="{{asset('storage/'.json_decode($product->images)[0])}}"
                                              class="img-fluid rounded mx-auto d-block">
-                                    </div>
-                                @endif
+                                    @else
+                                        <i class="bx bxs-file-archive"></i>
+                                    @endif
+                                </div>
                                 <h4 class="title">
                                     <a href="{{route('home.show', ['slug' => $product->slug])}}">{{$product->name}}</a>
                                 </h4>

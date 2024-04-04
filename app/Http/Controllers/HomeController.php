@@ -18,6 +18,8 @@ class HomeController extends Controller
             $products = $products->where('name', 'like', '%' . $request->search . '%')
                 ->orWhere('description', 'like', '%' . $request->search . '%');
         }
+        if ($request->filled('type'))
+            $products = $products->where('type', $request->type);
         if ($request->filled('tags')) {
             $tags = array_flatten(array_filter(explode(',', $request->tags)));
             $products = $products->whereJsonContains('tags', $tags[0]);
