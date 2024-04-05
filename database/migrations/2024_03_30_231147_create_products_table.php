@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->text('description')->nullable();
             $table->text('faq')->nullable();
             $table->string('slug');
-            $table->string('embed')->nullable();
+            $table->text('embed')->nullable();
             $table->float('regular_price')->default(0);
             $table->float('price')->default(0);
             $table->json('file')->nullable();
