@@ -25,23 +25,34 @@
                                        style="top:10px; right: 10px; font-size: 32px"
                                     ></i>
                                 @endif
-                                @if($detail->images && count(json_decode($detail->images)))
+                                @if($detail->embed)
+                                    <div>
+                                        {!! $detail->embed !!}
+                                    </div>
+                                @elseif($detail->images && count(json_decode($detail->images)))
                                     <img src="{{asset('storage/'.json_decode($detail->images)[0])}}"
                                          class="img-fluid rounded mx-auto d-block">
                                 @else
                                     <i class="bx bxs-file-archive"></i>
                                 @endif
                             </div>
-                            <div class="title" style="font-size: 26px;">
+                            <div class="title fontSize24">
                                 <a href="{{route('home.show', ['slug' => $detail->slug])}}">{{$detail->name}}</a>
                             </div>
-                            <div class="d-flex align-items-center">
-                                <i class="bx bx-purchase-tag-alt" style="margin-right: 10px; font-size: 28px"></i>
-                                <span style="font-size: 20px; text-decoration: line-through">Rp. 400000</span>
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="bx bx-purchase-tag-alt fontSize28" style="margin-right: 10px;"></i>
+                                <span class="fontSize24" style="text-decoration: line-through">Rp. 400000</span>
                             </div>
-                            <p class="description">
+                            <button class="kr-btn-outline-primary w-100 fontSize18">Dapatkan hanya Rp 5.000</button>
+                            <div class="my-5">
                                 {!! $detail->description !!}
-                            </p>
+                            </div>
+                            @if($detail->faq)
+                                <div class="my-5">
+                                    <h4 class="title">FAQ:</h4>
+                                    {!! $detail->faq !!}
+                                </div>
+                            @endif
                             @if($detail->tags && count(json_decode($detail->tags)))
                                 <div>
                                     <i class="bx bx-tag bx-rotate-180" style="margin-right: 5px"></i>

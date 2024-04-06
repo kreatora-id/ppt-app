@@ -14,7 +14,7 @@ body {
 }
 
 a {
-  color: #14c871;
+  color: var(--bs-primary);
   text-decoration: none;
 }
 
@@ -25,6 +25,19 @@ a:hover {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Raleway", sans-serif;
+}
+
+.fontSize32 {
+    font-size: 32px!important;
+}
+.fontSize28 {
+    font-size: 28px!important;
+}
+.fontSize24 {
+    font-size: 24px!important;
+}
+.fontSize18 {
+    font-size: 18px!important;
 }
 
 .kr-btn-outline-primary {

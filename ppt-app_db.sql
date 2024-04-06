@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 04 Apr 2024 pada 06.07
+-- Waktu pembuatan: 06 Apr 2024 pada 12.41
 -- Versi server: 8.0.36-0ubuntu0.22.04.1
 -- Versi PHP: 7.4.33
 
@@ -133,7 +133,7 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (58, 8, 'description', 'rich_text_box', 'Description', 0, 0, 1, 1, 1, 1, '{}', 4),
 (59, 8, 'faq', 'rich_text_box', 'Faq', 0, 0, 1, 1, 1, 1, '{}', 5),
 (60, 8, 'slug', 'text', 'Slug', 1, 0, 1, 0, 0, 0, '{}', 6),
-(61, 8, 'embed', 'text', 'Embed', 0, 0, 1, 1, 1, 1, '{\"description\":\"Embed dari google drive untuk viewer\"}', 7),
+(61, 8, 'embed', 'text_area', 'Embed', 0, 0, 1, 1, 1, 1, '{\"description\":\"Embed dari google drive untuk viewer\"}', 7),
 (62, 8, 'regular_price', 'number', 'Regular Price', 1, 1, 1, 1, 1, 1, '{\"default\":0,\"description\":\"Harga reguler sebelum didiskon\"}', 8),
 (63, 8, 'price', 'number', 'Price', 1, 1, 1, 1, 1, 1, '{\"default\":0,\"description\":\"Harga setelah diskon\"}', 9),
 (64, 8, 'images', 'multiple_images', 'Images', 0, 1, 1, 1, 1, 1, '{}', 11),
@@ -178,7 +178,7 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (4, 'categories', 'categories', 'Category', 'Categories', 'voyager-categories', 'TCG\\Voyager\\Models\\Category', NULL, '', '', 1, 0, NULL, '2024-03-30 15:51:50', '2024-03-30 15:51:50'),
 (5, 'posts', 'posts', 'Post', 'Posts', 'voyager-news', 'TCG\\Voyager\\Models\\Post', 'TCG\\Voyager\\Policies\\PostPolicy', '', '', 1, 0, NULL, '2024-03-30 15:51:50', '2024-03-30 15:51:50'),
 (6, 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'TCG\\Voyager\\Models\\Page', NULL, '', '', 1, 0, NULL, '2024-03-30 15:51:50', '2024-03-30 15:51:50'),
-(8, 'products', 'products', 'Product', 'Products', 'voyager-file-text', 'App\\Models\\Product', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2024-03-30 16:25:37', '2024-04-03 15:55:22');
+(8, 'products', 'products', 'Product', 'Products', 'voyager-file-text', 'App\\Models\\Product', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2024-03-30 16:25:37', '2024-04-05 15:25:30');
 
 -- --------------------------------------------------------
 
@@ -537,7 +537,7 @@ CREATE TABLE `products` (
   `description` text COLLATE utf8mb4_unicode_ci,
   `faq` text COLLATE utf8mb4_unicode_ci,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `embed` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `embed` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `regular_price` double(8,2) NOT NULL DEFAULT '0.00',
   `price` double(8,2) NOT NULL DEFAULT '0.00',
   `file` json DEFAULT NULL,
@@ -552,7 +552,11 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `type`, `description`, `faq`, `slug`, `embed`, `regular_price`, `price`, `file`, `images`, `tags`, `created_at`, `updated_at`) VALUES
-(1, 'PPT nomor 1', 'Free', NULL, NULL, 'ppt_nomor_1_761906', NULL, 0.00, 0.00, '[{\"download_link\": \"products/April2024/fkfFsJqqgo0gRNy6hS2C.pptx\", \"original_name\": \"User Guide.pptx\"}]', '[\"products/April2024/CS26PqqYhfYB8VAAlrho.png\"]', '[]', '2024-04-03 16:06:23', '2024-04-03 16:06:23');
+(1, 'PPT nomor 1', 'Premium', '<p><strong>Lorem ipsum dolor sit amet</strong>, consectetur adipiscing elit. Proin elementum, lectus non consequat accumsan, nisl velit ultricies nibh, sed dictum velit risus quis nisl. Curabitur vitae urna id quam porttitor finibus id quis mi. Donec tristique eleifend neque a tempus. In vel mauris et felis sodales interdum. Mauris mattis tortor non ex luctus rhoncus. Duis sed nunc non tortor aliquet pellentesque. Sed consectetur fringilla iaculis. Duis faucibus pellentesque bibendum. Nulla justo diam, interdum sed egestas ac, consectetur id ligula. In sed diam purus.</p>\r\n<p>Nunc dictum lobortis tellus, eget fringilla neque tincidunt quis. Suspendisse potenti. Aenean id dolor id felis tincidunt interdum ut non dui. Vestibulum scelerisque turpis sit amet urna vulputate eleifend. Proin eu blandit diam, ut aliquam lectus. Duis euismod vehicula sagittis. Vivamus ut risus in sem aliquet venenatis. Cras non dolor ut dolor pretium dignissim vel ac augue. Quisque sit amet lobortis elit. Donec tristique tellus eu massa euismod placerat. Morbi non ligula elit. Nulla vitae congue sem. Donec finibus porttitor faucibus.</p>', '<p><strong>Apa itu template?</strong></p>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin elementum, lectus non consequat accumsan, nisl velit ultricies nibh, sed dictum velit risus quis nisl. Curabitur vitae urna id quam porttitor finibus id quis mi. Donec tristique eleifend neque a tempus. In vel mauris et felis sodales interdum. Mauris mattis tortor non ex luctus rhoncus. Duis sed nunc non tortor aliquet pellentesque. Sed consectetur fringilla iaculis. Duis faucibus pellentesque bibendum. Nulla justo diam, interdum sed egestas ac, consectetur id ligula. In sed diam purus.</p>\r\n<p><strong>Bolehkah saya mendownloadnya?</strong></p>\r\n<p>Nunc dictum lobortis tellus, eget fringilla neque tincidunt quis. Suspendisse potenti. Aenean id dolor id felis tincidunt interdum ut non dui. Vestibulum scelerisque turpis sit amet urna vulputate eleifend. Proin eu blandit diam, ut aliquam lectus. Duis euismod vehicula sagittis. Vivamus ut risus in sem aliquet venenatis. Cras non dolor ut dolor pretium dignissim vel ac augue. Quisque sit amet lobortis elit. Donec tristique tellus eu massa euismod placerat. Morbi non ligula elit. Nulla vitae congue sem. Donec finibus porttitor faucibus.</p>', 'ppt_nomor_1_761906', '<iframe src=\"https://docs.google.com/presentation/d/e/2PACX-1vRZwuM_YSIqSf7k7Hy-zbzJiHZHK8beeo1CfnnAtOIqJVRLrl-H63cnyapG2Ad5Iw/embed?start=false&loop=false&delayms=3000\" frameborder=\"0\" width=\"640\" height=\"389\" allowfullscreen=\"true\" mozallowfullscreen=\"true\" webkitallowfullscreen=\"true\"></iframe>', 25000.00, 12000.00, '[{\"download_link\": \"products/April2024/fkfFsJqqgo0gRNy6hS2C.pptx\", \"original_name\": \"User Guide.pptx\"}]', '[\"products/April2024/CS26PqqYhfYB8VAAlrho.png\", \"products/April2024/ZsmwXwRvWsl15qmeEtK5.png\", \"products/April2024/britrlzJjpBwcdSlhrvm.png\", \"products/April2024/yo6eXOLWKKEnMmYZu3DF.png\"]', '[\"Business\", \"Education\", \"Nature\", \"Military\", \"Stair-Step\"]', '2024-04-03 16:06:23', '2024-04-05 22:41:01'),
+(2, 'PPT Nomor 2', 'Free', NULL, NULL, 'ppt_nomor_2_914874', NULL, 0.00, 0.00, '[{\"download_link\": \"products/April2024/jHFAs8iGei6Eusd9k8Dc.pptx\", \"original_name\": \"User Guide.pptx\"}]', '[\"products/April2024/KkdoIQ5MVzbRVrqZlO7x.jpg\"]', '[]', '2024-04-04 06:59:38', '2024-04-04 07:36:51'),
+(3, 'PPT Nomor 3', 'Free', NULL, NULL, 'ppt_nomor_3_781877', NULL, 0.00, 0.00, '[]', '[\"products/April2024/JtQoJa5mJZMcEO2oQdS8.jpg\"]', '[]', '2024-04-04 07:17:41', '2024-04-04 07:34:54'),
+(4, 'PPT Nomor 4', 'Free', NULL, NULL, 'ppt_nomor_4_802141', NULL, 0.00, 0.00, '[{\"download_link\": \"products/April2024/RKSrdvM4An3kSSxzrjJZ.pptx\", \"original_name\": \"Black Coffee Beans PowerPoint Templates.pptx\"}]', '[\"products/April2024/dRtkRajHCnsmYrFwbS6T.png\"]', '[]', '2024-04-04 07:37:24', '2024-04-04 08:43:39'),
+(5, 'PPT Nomor 5', 'Premium', NULL, NULL, 'ppt_nomor_5_207754', NULL, 0.00, 0.00, '[]', NULL, '[\"Military\", \"Agenda-Org\"]', '2024-04-04 08:46:31', '2024-04-04 09:16:55');
 
 -- --------------------------------------------------------
 
@@ -914,7 +918,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT untuk tabel `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `roles`
