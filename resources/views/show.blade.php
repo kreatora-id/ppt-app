@@ -4,27 +4,50 @@
 
 @extends('layouts.app')
 
+@section('head')
+    <style>
+        iframe {
+            width: 100%;
+        }
+    </style>
+@endsection
+
 @section('content')
     <main id="main" style="margin-top: 85px;">
         <!-- ======= Featured Services Section ======= -->
         <section id="featured-services" class="featured-services">
             <div class="container my-4">
                 <div class="row mb-2">
-                    <div class="col-md-9 mb-5">
+                    <div class="col-lg-9 mb-5">
                         <div class="icon-box">
                             <div class="icon position-relative">
                                 @if($detail->type == 'Premium')
-                                    <i class="bx bxs-crown position-absolute"
-                                       style="top:10px; right: 10px; font-size: 32px"
-                                    ></i>
+                                    <i class="bx bxs-crown position-absolute fontSize32" style="top:10px; right: 10px;"></i>
                                 @endif
                                 @if($detail->embed)
                                     <div>
                                         {!! $detail->embed !!}
                                     </div>
                                 @elseif($detail->images && count(json_decode($detail->images)))
-                                    <img src="{{asset('storage/'.json_decode($detail->images)[0])}}"
-                                         class="img-fluid rounded mx-auto d-block">
+                                    <div id="carouselTemplateImage" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-inner">
+                                            @foreach(json_decode($detail->images) as $key => $image)
+                                                <div class="carousel-item {{$key == 0 ? 'active' : ''}}">
+                                                    <img class="d-block w-100"
+                                                         src="{{asset('storage/'.$image)}}"
+                                                         alt="Image {{$key+1}}">
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselTemplateImage" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button" data-bs-target="#carouselTemplateImage" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
+                                    </div>
                                 @else
                                     <i class="bx bxs-file-archive"></i>
                                 @endif
@@ -61,7 +84,7 @@
                             @endif
                         </div>
                     </div>
-                    <div class="col-md-3 py-3 px-3">
+                    <div class="col-lg-3 py-3 px-3">
                         <h5 class="title">Template lainnya</h5>
                         @foreach($others as $other)
                             <div class="mb-4">
@@ -123,4 +146,10 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        document.querySelectorAll(".punch-viewer-navbar-logo").forEach(el => el.remove());
+    </script>
 @endsection
