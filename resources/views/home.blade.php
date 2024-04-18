@@ -21,7 +21,7 @@
 
 @section('content')
     <!-- ======= Hero Section ======= -->
-    <section id="hero" class="d-flex align-items-center section-bg">
+    <div id="hero" class="d-flex align-items-center section-bg">
         <div class="container">
             <div class="row">
                 <div class="col-12 pt-3 pt-lg-0 d-flex flex-column justify-content-center">
@@ -79,7 +79,7 @@
                 </div>
             </div>
         </div>
-    </section><!-- End Hero -->
+    </div><!-- End Hero -->
 
     <main id="main">
         <!-- ======= Featured Services Section ======= -->
@@ -94,33 +94,35 @@
                 <div class="row mb-2">
                     @foreach($products as $product)
                         <div class="col-lg-4 col-md-6 mb-4">
-                            <div class="icon-box">
-                                <div class="icon position-relative">
-                                    @if($product->type == 'Premium')
-                                        <i class="bx bxs-crown position-absolute"
-                                           style="top:10px; right: 10px; font-size: 32px"
-                                        ></i>
-                                    @endif
-                                    @if($product->images && count(json_decode($product->images)))
-                                        <img src="{{asset('storage/'.json_decode($product->images)[0])}}"
-                                             class="img-fluid rounded mx-auto d-block">
-                                    @else
-                                        <i class="bx bxs-file-archive"></i>
+                            <a href="{{route('home.show', ['slug' => $product->slug])}}">
+                                <div class="icon-box">
+                                    <div class="icon position-relative">
+                                        @if($product->type == 'Premium')
+                                            <i class="bx bxs-crown position-absolute"
+                                               style="top:10px; right: 10px; font-size: 32px"
+                                            ></i>
+                                        @endif
+                                        @if($product->images && count(json_decode($product->images)))
+                                            <img src="{{asset('storage/'.json_decode($product->images)[0])}}"
+                                                 class="img-fluid rounded mx-auto d-block">
+                                        @else
+                                            <i class="bx bxs-file-archive"></i>
+                                        @endif
+                                    </div>
+                                    <h4 class="title">
+                                        <a href="{{route('home.show', ['slug' => $product->slug])}}">{{$product->name}}</a>
+                                    </h4>
+                                    <p class="description">
+                                        {{str_limit(strip_tags($product->description), $limit = 150, $end = '...')}}
+                                    </p>
+                                    @if($product->tags && count(json_decode($product->tags)))
+                                        <div>
+                                            <i class="bx bx-tag bx-rotate-180" style="margin-right: 5px"></i>
+                                            {{implode(', ', json_decode($product->tags))}}
+                                        </div>
                                     @endif
                                 </div>
-                                <h4 class="title">
-                                    <a href="{{route('home.show', ['slug' => $product->slug])}}">{{$product->name}}</a>
-                                </h4>
-                                <p class="description">
-                                    {{str_limit(strip_tags($product->description), $limit = 150, $end = '...')}}
-                                </p>
-                                @if($product->tags && count(json_decode($product->tags)))
-                                    <div>
-                                        <i class="bx bx-tag bx-rotate-180" style="margin-right: 5px"></i>
-                                        {{implode(', ', json_decode($product->tags))}}
-                                    </div>
-                                @endif
-                            </div>
+                            </a>
                         </div>
                     @endforeach
                 </div>

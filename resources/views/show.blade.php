@@ -1,17 +1,10 @@
+@php
+    $formatter_number = new NumberFormatter('id_ID',  NumberFormatter::CURRENCY);
+@endphp
+
 @extends('layouts.app')
 
 @section('content')
-    <!-- ======= Hero Section ======= -->
-{{--    <section id="hero" class="d-flex align-items-center section-bg">--}}
-{{--        <div class="container">--}}
-{{--            <div class="row">--}}
-{{--                <div class="col-12 pt-3 pt-lg-0 d-flex flex-column justify-content-center">--}}
-{{--                    lalaaa--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </section><!-- End Hero -->--}}
-
     <main id="main" style="margin-top: 85px;">
         <!-- ======= Featured Services Section ======= -->
         <section id="featured-services" class="featured-services">
@@ -39,11 +32,17 @@
                             <div class="title fontSize24">
                                 <a href="{{route('home.show', ['slug' => $detail->slug])}}">{{$detail->name}}</a>
                             </div>
-                            <div class="d-flex align-items-center mb-3">
-                                <i class="bx bx-purchase-tag-alt fontSize28" style="margin-right: 10px;"></i>
-                                <span class="fontSize24" style="text-decoration: line-through">Rp. 400000</span>
-                            </div>
-                            <button class="kr-btn-outline-primary w-100 fontSize18">Dapatkan hanya Rp 5.000</button>
+                            @if($detail->regular_price)
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="bx bx-purchase-tag-alt fontSize28" style="margin-right: 10px;"></i>
+                                    <span class="fontSize24" style="text-decoration: line-through">
+                                        {{$formatter_number->formatCurrency($detail->regular_price, 'IDR')}}
+                                    </span>
+                                </div>
+                            @endif
+                            <button class="kr-btn-outline-primary w-100 fontSize18">
+                                Dapatkan {{$detail->price ? 'hanya '.$formatter_number->formatCurrency($detail->price, 'IDR') : 'secara Gratis'}}
+                            </button>
                             <div class="my-5">
                                 {!! $detail->description !!}
                             </div>
