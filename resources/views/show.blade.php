@@ -1,7 +1,3 @@
-@php
-    $formatter_number = new NumberFormatter('id_ID',  NumberFormatter::CURRENCY);
-@endphp
-
 @extends('layouts.app')
 
 @section('head')
@@ -59,13 +55,13 @@
                                 <div class="d-flex align-items-center mb-3">
                                     <i class="bx bx-purchase-tag-alt fontSize28" style="margin-right: 10px;"></i>
                                     <span class="fontSize24" style="text-decoration: line-through">
-                                        {{$formatter_number->formatCurrency($detail->regular_price, 'IDR')}}
+                                        {{Helper::numberToCurrency($detail->regular_price)}}
                                     </span>
                                 </div>
                             @endif
-                            <button class="kr-btn-outline-primary w-100 fontSize18" type="button" data-toggle="modal"
-                                    data-target="#modalCheckoutTemplate">
-                                Dapatkan {{$detail->price ? 'hanya '.$formatter_number->formatCurrency($detail->price, 'IDR') : 'secara Gratis'}}
+                            <button class="kr-btn-outline-primary w-100 fontSize18" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#modalCheckoutTemplate">
+                                Dapatkan {{$detail->price ? 'hanya '.Helper::numberToCurrency($detail->price) : 'secara Gratis'}}
                             </button>
                             <div class="my-5">
                                 {!! $detail->description !!}
@@ -129,19 +125,47 @@
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalCheckoutTitle">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h5 class="modal-title" id="modalCheckoutTitle">
+                        Dapatkan {{$detail->price ? 'hanya '.Helper::numberToCurrency($detail->price) : 'secara Gratis'}}
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>
-                        Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                    </p>
+                    <form id="orderTemplate">
+                        <div class="form-text mb-3">
+                            Lengkapi data dibawah ini untuk melanjutkan <br/>
+                            *Gunakan email aktif karena kami akan mengirimkan kode verifikasi
+                        </div>
+                        <div class="row">
+                            <div class="col-12 mb-2">
+                                <label for="name" class="form-label">Nama</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="col-lg-6 mb-2">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="col-lg-6 mb-2">
+                                <label for="whatsapp" class="form-label">No Whatsapp</label>
+                                <input type="tel" class="form-control" id="whatsapp" name="whatsapp" required>
+                            </div>
+                            <div class="col-12 mb-2">
+                                <label for="payment" class="form-label">Pembayaran</label>
+                                <select class="form-select" name="payment" required>
+                                    <option value="qris" selected>QRIS</option>
+                                    <option value="ShopeePay">ShopeePay</option>
+                                    <option value="GoPay">GoPay</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <div class="w-100 mb-4">
+                        <button type="submit" class="kr-btn-outline-primary w-100" form="orderTemplate">
+                            Checkout {{$detail->price ? Helper::numberToCurrency($detail->price) : 'Gratis'}}
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
