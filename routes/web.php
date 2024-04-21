@@ -20,6 +20,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 Route::get('/', [Controllers\HomeController::class, 'index']);
 Route::get('slides', [Controllers\HomeController::class, 'index'])->name('home.index');
+Route::post('slides/checkout', [Controllers\HomeController::class, 'checkout'])->name('home.checkout');
 Route::get('slides/{slug}', [Controllers\HomeController::class, 'show'])->name('home.show');
 Route::get('origin', function () {
     return view('enno_template_origin');

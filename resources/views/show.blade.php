@@ -125,18 +125,20 @@
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalCheckoutTitle">
-                        Dapatkan {{$detail->price ? 'hanya '.Helper::numberToCurrency($detail->price) : 'secara Gratis'}}
-                    </h5>
+                    <h6 class="modal-title" id="modalCheckoutTitle">
+                        Dapatkan {{$detail->name}} {{$detail->price ? 'hanya '.Helper::numberToCurrency($detail->price) : 'secara Gratis'}}
+                    </h6>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="orderTemplate">
+                    <form id="orderTemplate" method="post" action="{{route('home.checkout')}}">
+                        @csrf
                         <div class="form-text mb-3">
                             Lengkapi data dibawah ini untuk melanjutkan <br/>
                             *Gunakan email aktif karena kami akan mengirimkan kode verifikasi
                         </div>
                         <div class="row">
+                            <input type="hidden" name="slug" value="{{$detail->slug}}">
                             <div class="col-12 mb-2">
                                 <label for="name" class="form-label">Nama</label>
                                 <input type="text" class="form-control" id="name" name="name" required>
@@ -152,9 +154,13 @@
                             <div class="col-12 mb-2">
                                 <label for="payment" class="form-label">Pembayaran</label>
                                 <select class="form-select" name="payment" required>
-                                    <option value="qris" selected>QRIS</option>
-                                    <option value="ShopeePay">ShopeePay</option>
-                                    <option value="GoPay">GoPay</option>
+                                    @if($detail->price)
+                                        @foreach($payments as $payment)
+                                            <option value="{{$payment}}" {{$loop->first ? 'selected' : ''}}>{{$payment}}</option>
+                                        @endforeach
+                                    @else
+                                        <option value="Gratis" selected>Gratis</option>
+                                    @endif
                                 </select>
                             </div>
                         </div>
