@@ -1,21 +1,5 @@
 @extends('layouts.app')
-@section('head')
-    <style>
-        .kr-badge {
-            padding: 4px 15px;
-            border: 1px solid;
-            border-radius: 7px;
-        }
-        .kr-badge-success {
-            color: #28a745;
-            border-color: #28a745;
-        }
-        .kr-badge-warning {
-            color: #16df7e;
-            border-color: #16df7e;
-        }
-    </style>
-@endsection
+
 @section('content')
     <main id="main" style="margin-top: 85px;">
         <!-- ======= Featured Services Section ======= -->

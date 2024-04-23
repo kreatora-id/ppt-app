@@ -24,6 +24,7 @@
 
     <!-- Template Main CSS File -->
     <link href="{{asset('/assets_homepage/css/style.css')}}" rel="stylesheet">
+    <link href="{{asset('/assets_homepage/css/custom.css')}}" rel="stylesheet">
     @yield('head')
     <!-- =======================================================
     * Template Name: eNno - v4.7.0
