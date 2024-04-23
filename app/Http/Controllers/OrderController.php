@@ -7,16 +7,41 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(Request $request)
     {
-        $orders = Order::query()->with('product:id,name,slug')->orderByDesc('id')->get();
+        $orders = [];
+        $message = '';
+        $is_send_code = false;
+        if ($request->filled('search')) {
+            if (filter_var($request->search, FILTER_VALIDATE_EMAIL)) {
+                // using email
+                $order = Order::query()->select(['id', 'order_number', 'email'])
+                    ->where('email', $request->search)->first();
+                // check is email has orderan
+                if ($order) {
+                    $is_send_code = true;
+                    if ($request->filled('code')) {
+                        $orders = Order::query()->where('email', $request->search)
+                            ->with('product:id,name,slug')->orderByDesc('id')->get();
+                    }
+                } else {
+                    $message =  'Pesanan dengan email '.$request->search.' tidak ditemukan';
+                }
+            } else {
+                // using order number
+                $order = Order::query()->select(['id', 'order_number'])
+                    ->where('order_number', $request->search)->first();
+                if ($order) {
+                    return response()->redirectToRoute('order.show', ['order_number' => $order->order_number]);
+                } else {
+                    $message =  'Pesanan dengan nomor '.$request->search.' tidak ditemukan';
+                }
+            }
+        }
         return response()->view('orders.index', [
-            'orders' => $orders
+            'orders' => $orders,
+            'message' => $message,
+            'is_send_code' => $is_send_code,
         ]);
     }
 

@@ -8,15 +8,43 @@
                 <div class="mb-4">
                     <h4 class="title">Lihat Pesananmu</h4>
                     <form>
-                        <div class="d-flex">
-                            <input type="text" class="form-control" placeholder="Masukkan no. pesanan anda"
-                                   name="order_number" style="margin-right: 15px;">
-                            <button type="submit" class="kr-btn-outline-primary">
-                                <i class="bi bi-search"></i>&nbsp;Cari
-                            </button>
+                        <div class="row mb-3">
+                            @if($is_send_code)
+                                <div class="col-md-5 mb-2">
+                                    <input type="text" class="form-control" placeholder="Masukkan no. pesanan anda"
+                                           name="search" style="margin-right: 15px;"
+                                           value="{{app('request')->input('search')}}"}}>
+                                </div>
+                                <div class="col-md-5 mb-2">
+                                    <input type="text" class="form-control" placeholder="Masukkan kode verifikasi"
+                                           name="code" style="margin-right: 15px;" value="{{app('request')->input('code')}}">
+                                </div>
+                            @else
+                                <div class="col-md-10 mb-2">
+                                    <input type="text" class="form-control" placeholder="Masukkan no. pesanan anda"
+                                           name="search" style="margin-right: 15px;" value="{{app('request')->input('search')}}">
+                                </div>
+                            @endif
+                            <div class="col-md-2 mb-2">
+                                <button type="submit" class="kr-btn-outline-primary w-100">
+                                    <i class="bi bi-search"></i>&nbsp;Cari
+                                </button>
+                            </div>
                         </div>
+                        @if($is_send_code && !app('request')->input('code'))
+                        <div class="alert alert-warning" role="alert">
+                            <small>Kami telah mengirimkan kode verifikasi ke email {{app('request')->input('search')}}.&nbsp;
+                                Jika belum menerima silahkan <a href="#">kirim ulang</a></small>
+                        </div>
+                        @endif
                     </form>
                 </div>
+                @if($message)
+                <div class="text-center" style="margin-top: 75px; margin-bottom: 75px;">
+                    <div class="title">{{$message}}</div>
+                </div>
+                @endif
+                @if($orders && $orders->count())
                 <div class="mb-5">
                     <h4 class="title">Pesananmu</h4>
                     <div class="row">
@@ -73,6 +101,7 @@
                         @endforeach
                     </div>
                 </div>
+                @endif
             </div>
         </section>
         <!-- End Featured Services Section -->
