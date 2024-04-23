@@ -74,6 +74,6 @@ class SlideController extends Controller
         $order->payment_status = $product->price ? $payment_status[1] : $payment_status[2];
         $order->save();
 
-        dd($order->toArray());
+        return response()->redirectToRoute('order.show', ['order_number' => $order->order_number]);
     }
 }

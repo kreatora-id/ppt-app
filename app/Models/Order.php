@@ -12,4 +12,7 @@ class Order extends Model
 
     const PAYMENT = ["QRIS", "ShopeePay", "GoPay"];
     const PAYMENT_STATUS = ["UNPAID", "PENDING", "PAID"];
+    public function product() {
+        return $this->belongsTo(Product::class);
+    }
 }

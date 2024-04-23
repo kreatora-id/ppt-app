@@ -1,5 +1,21 @@
 @extends('layouts.app')
-
+@section('head')
+    <style>
+        .kr-badge {
+            padding: 4px 15px;
+            border: 1px solid;
+            border-radius: 7px;
+        }
+        .kr-badge-success {
+            color: #28a745;
+            border-color: #28a745;
+        }
+        .kr-badge-warning {
+            color: #16df7e;
+            border-color: #16df7e;
+        }
+    </style>
+@endsection
 @section('content')
     <main id="main" style="margin-top: 85px;">
         <!-- ======= Featured Services Section ======= -->
@@ -20,16 +36,57 @@
                 <div class="mb-5">
                     <h4 class="title">Pesananmu</h4>
                     <div class="row">
-                        <div class="col-md-6 mb-3">
+                        @foreach($orders as $order)
+                        <div class="col-md-6 mb-4">
                             <div class="icon-box">
-                                <div class="d-flex justify-content-between">
-                                    <h5 class="title">
-                                        <a href="#">JH2832912</a>
-                                    </h5>
-                                    <div>Success</div>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <div class="title">
+                                        <a href="{{route('order.show', ['order_number' => $order->order_number])}}">
+                                            {{$order->order_number}}
+                                        </a>
+                                    </div>
+                                    <div class="kr-badge kr-badge-success">{{$order->payment_status}}</div>
+                                </div>
+                                <div class="mb-2">
+                                    <b>
+                                        <a href="{{route('slide.show', ['slug' => $order->product->slug])}}"
+                                           target="_blank">
+                                            {{$order->product->name}}
+                                        </a>
+                                    </b>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-6">
+                                        <small>Metode Pembayaran</small>
+                                        <div>{{$order->payment}}</div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <small>Total Pembayaran</small>
+                                        <div>{{Helper::numberToCurrency($order->amount)}}</div>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <small>Nama Pemesan</small>
+                                    <div>{{$order->name}}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-6">
+                                        <small>Email</small>
+                                        <div>{{$order->email}}</div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <small>WhatsApp</small>
+                                        <div>{{$order->whatsapp}}</div>
+                                    </div>
+                                </div>
+                                <div class="mb-2" style="text-align: right;">
+                                    <a href="{{route('order.show', ['order_number' => $order->order_number])}}">
+                                        Detail...
+                                    </a>
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

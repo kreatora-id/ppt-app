@@ -18,7 +18,7 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
-Route::get('/', [Controllers\SlideController::class, 'index']);
+Route::get('/', [Controllers\SlideController::class, 'index'])->name('home');
 Route::get('slides', [Controllers\SlideController::class, 'index'])->name('slide.index');
 Route::post('slides/checkout', [Controllers\SlideController::class, 'checkout'])->name('slide.checkout');
 Route::get('slides/{slug}', [Controllers\SlideController::class, 'show'])->name('slide.show');

@@ -14,7 +14,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
+        $orders = Order::query()->with('product:id,name,slug')->orderByDesc('id')->get();
         return response()->view('orders.index', [
             'orders' => $orders
         ]);
@@ -47,9 +47,14 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($order_number)
     {
-        //
+        $order = Order::query()->where('order_number', $order_number)->with('product:id,name,slug')
+            ->first();
+        if (!$order) abort(404);
+        return response()->view('orders.show', [
+            'order' => $order
+        ]);
     }
 
     /**
