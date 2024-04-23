@@ -18,10 +18,15 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
-Route::get('/', [Controllers\HomeController::class, 'index']);
-Route::get('slides', [Controllers\HomeController::class, 'index'])->name('home.index');
-Route::post('slides/checkout', [Controllers\HomeController::class, 'checkout'])->name('home.checkout');
-Route::get('slides/{slug}', [Controllers\HomeController::class, 'show'])->name('home.show');
+Route::get('/', [Controllers\SlideController::class, 'index']);
+Route::get('slides', [Controllers\SlideController::class, 'index'])->name('slide.index');
+Route::post('slides/checkout', [Controllers\SlideController::class, 'checkout'])->name('slide.checkout');
+Route::get('slides/{slug}', [Controllers\SlideController::class, 'show'])->name('slide.show');
+
+Route::get('order', [Controllers\OrderController::class, 'index'])->name('order.index');
+Route::get('order/{order_number}', [Controllers\OrderController::class, 'show'])->name('order.show');
+
+
 Route::get('origin', function () {
     return view('enno_template_origin');
 });

@@ -40,7 +40,7 @@
                     <div class="my-2">
                         <label>Tipe Template:</label>
                         <div class="d-flex mt-1">
-                            <a href="{{route('home.index', [
+                            <a href="{{route('slide.index', [
                                     'search' => app('request')->input('search'),
                                     'type' => 'free',
                                     'tags' => app('request')->input('tags'),
@@ -50,7 +50,7 @@
                                 <i class="bi bi-cloudy-fill" style="margin-right: 2px;"></i>
                                 Gratis
                             </a>
-                            <a href="{{route('home.index', [
+                            <a href="{{route('slide.index', [
                                     'search' => app('request')->input('search'),
                                     'type' => 'premium',
                                     'tags' => app('request')->input('tags'),
@@ -67,7 +67,7 @@
                         <div class="d-flex overflow-auto mt-1 pb-2">
                             @foreach($tag_options as $top)
                                 <a class="kr-btn-outline-primary {{ tagActive(app('request')->input('tags'), $top) }}"
-                                   href="{{route('home.index', [
+                                   href="{{route('slide.index', [
                                         'search' => app('request')->input('search'),
                                         'type' => app('request')->input('type'),
                                         'tags' => convertTags(app('request')->input('tags'), $top),
@@ -94,7 +94,7 @@
                 <div class="row mb-2">
                     @foreach($products as $product)
                         <div class="col-lg-4 col-md-6 mb-4">
-                            <a href="{{route('home.show', ['slug' => $product->slug])}}">
+                            <a href="{{route('slide.show', ['slug' => $product->slug])}}">
                                 <div class="icon-box">
                                     <div class="icon position-relative">
                                         @if($product->type == 'Premium')
@@ -110,7 +110,7 @@
                                         @endif
                                     </div>
                                     <h4 class="title">
-                                        <a href="{{route('home.show', ['slug' => $product->slug])}}">{{$product->name}}</a>
+                                        <a href="{{route('slide.show', ['slug' => $product->slug])}}">{{$product->name}}</a>
                                     </h4>
                                     <p class="description">
                                         {{str_limit(strip_tags($product->description), $limit = 150, $end = '...')}}
@@ -137,44 +137,7 @@
         </section>
         <!-- End Featured Services Section -->
 
-        <!-- ======= Services Section ======= -->
-        <section id="services" class="services section-bg">
-            <div class="container">
-
-                <div class="section-title">
-                    <span>Kenapa Kreatora?</span>
-                    <h2>Kenapa Kreatora?</h2>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bi bi-graph-up-arrow"></i></div>
-                            <h4><a href="">Transparan</a></h4>
-                            <p>Pantau proses pengembangan dari pembuatan hingga game bisa di rilis</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bi bi-controller"></i></div>
-                            <h4><a href="">Eksklusif</a></h4>
-                            <p>Temukan game eksklusif yang belum pernah kamu lihat sebelumnya</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bi bi-wallet"></i></div>
-                            <h4><a href="">Jaminan uang kembali</a></h4>
-                            <p>Jaminan uang kembali jika game yang kamu dukung tidak memenuhi target campaign</p>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </section><!-- End Services Section -->
+        @include('layouts.why_kreatora')
     </main>
     <!-- End #main -->
 @endsection

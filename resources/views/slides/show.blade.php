@@ -49,7 +49,7 @@
                                 @endif
                             </div>
                             <div class="title fontSize24">
-                                <a href="{{route('home.show', ['slug' => $detail->slug])}}">{{$detail->name}}</a>
+                                <a href="{{route('slide.show', ['slug' => $detail->slug])}}">{{$detail->name}}</a>
                             </div>
                             @if($detail->regular_price)
                                 <div class="d-flex align-items-center mb-3">
@@ -99,7 +99,7 @@
                                         @endif
                                     </div>
                                     <h4 class="title">
-                                        <a href="{{route('home.show', ['slug' => $other->slug])}}">{{$other->name}}</a>
+                                        <a href="{{route('slide.show', ['slug' => $other->slug])}}">{{$other->name}}</a>
                                     </h4>
                                     <p class="description">
                                         {{str_limit(strip_tags($other->description), $limit = 150, $end = '...')}}
@@ -131,7 +131,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="orderTemplate" method="post" action="{{route('home.checkout')}}">
+                    <form id="orderTemplate" method="post" action="{{route('slide.checkout')}}">
                         @csrf
                         <div class="form-text mb-3">
                             Lengkapi data dibawah ini untuk melanjutkan <br/>

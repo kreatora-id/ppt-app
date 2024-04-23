@@ -7,7 +7,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use TCG\Voyager\Models\DataRow;
 
-class HomeController extends Controller
+class SlideController extends Controller
 {
     public function index(Request $request)
     {
@@ -31,7 +31,7 @@ class HomeController extends Controller
         $products = $products
             ->paginate(9, '*', 'page', $request->filled('page') ? $request->page : 1);
 
-        return view('home', [
+        return view('slides.index', [
             'tag_options' => $tag_options,
             'products' => $products
         ]);
@@ -42,7 +42,7 @@ class HomeController extends Controller
         $detail = Product::query()->where('slug', $slug)->first();
         if (!$detail) abort(404);
         $others = Product::query()->select(['name', 'description', 'tags', 'type', 'slug', 'images'])->limit(3)->get();
-        return view('show', [
+        return view('slides.show', [
             'detail' => $detail,
             'others' => $others,
             'payments' => Order::PAYMENT
