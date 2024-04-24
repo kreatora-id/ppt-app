@@ -21,6 +21,7 @@ Route::group(['prefix' => 'admin'], function () {
 Route::get('/', [Controllers\SlideController::class, 'index'])->name('home');
 Route::get('slides', [Controllers\SlideController::class, 'index'])->name('slide.index');
 Route::post('slides/checkout', [Controllers\SlideController::class, 'checkout'])->name('slide.checkout');
+Route::post('slides/download', [Controllers\SlideController::class, 'download'])->name('slide.download');
 Route::get('slides/{slug}', [Controllers\SlideController::class, 'show'])->name('slide.show');
 
 Route::get('order', [Controllers\OrderController::class, 'index'])->name('order.index');

@@ -76,4 +76,24 @@ class SlideController extends Controller
 
         return response()->redirectToRoute('order.show', ['order_number' => $order->order_number]);
     }
+
+    public function download(Request $request)
+    {
+        if (!$request->filled('order_number')) return redirect()->back();
+        $order = Order::query()->select(['id', 'product_id', 'order_number'])
+            ->where([
+                'order_number' => $request->order_number,
+                'payment_status' => Order::PAYMENT_STATUS[2],
+            ])
+            ->with('product:id,file,slug')->first();
+        if ($order && $order->product && $order->product->file) {
+            $files = json_decode($order->product->file);
+            $file = $files[0]->download_link;
+            $formats = explode('.', $file);
+            return response()->download(
+                storage_path('app/public/'. $file), $order->product->slug.'.'.end($formats)
+            );
+        }
+        return redirect()->back();
+    }
 }

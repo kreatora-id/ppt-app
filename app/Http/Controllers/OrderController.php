@@ -13,7 +13,7 @@ class OrderController extends Controller
         $message = '';
         $is_send_code = false;
         if ($request->filled('search')) {
-            if (filter_var($request->search, FILTER_VALIDATE_EMAIL)) {
+            if (filter_var($request->search, FILTER_VALIDATE_EMAIL) && false) {
                 // using email
                 $order = Order::query()->select(['id', 'order_number', 'email'])
                     ->where('email', $request->search)->first();

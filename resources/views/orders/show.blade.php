@@ -1,3 +1,6 @@
+@php
+$payment_status = \App\Models\Order::PAYMENT_STATUS;
+@endphp
 @extends('layouts.app')
 
 @section('content')
@@ -48,8 +51,20 @@
                             </div>
                         </div>
                         <div class="mb-4 text-center">
-                            <p>Link download template akan muncul kita pembayaran perhasil</p>
-                            <button class="kr-btn-outline-primary">Update status pembayaran</button>
+                            @if($order->payment_status == $payment_status[2] || true)
+                                <p>Silahkan download template melalui tombol dibawah ini</p>
+                                <form method="post" action="{{route('slide.download')}}">
+                                    @csrf
+                                    <input type="hidden" name="order_number" value="{{$order->order_number}}">
+                                    <button class="kr-btn-outline-primary" type="submit">
+                                        <i class="bi bi-download"></i>&nbsp;
+                                        Download template
+                                    </button>
+                                </form>
+                            @elseif($order->payment_status == $payment_status[1])
+                                <p>Link download template akan muncul kita pembayaran berhasil</p>
+                                <button class="kr-btn-outline-primary">Update status pembayaran</button>
+                            @endif
                         </div>
                     </div>
                 </div>

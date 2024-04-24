@@ -12,9 +12,9 @@ class OtpHelper
         if (!$email) return '';
         $last_otp = Otp::query()->where('email', $email)->orWhere('reference_id', $reference_id)
             ->latest()->first();
-        if ($last_otp && Carbon::now()) {
+        if ($last_otp) {
             $expired_time = new Carbon($last_otp->expired_at);
-            if ($expired_time->diffInMinutes(Carbon::now()) > 5) {
+            if ($expired_time->diffInMinutes(Carbon::now()) < 5) {
                 return $last_otp;
             }
         }
@@ -32,5 +32,21 @@ class OtpHelper
 //        $this->sentOtpToEmail();
 
         return $new_otp;
+    }
+
+    public function resendOTP(string $email, string $reference_id)
+    {
+        if (!$email) return '';
+        $last_otp = Otp::query()->where('email', $email)->orWhere('reference_id', $reference_id)
+            ->latest()->first();
+        if (!$last_otp) {
+            return $this->generateOTP($email, $reference_id);
+        }
+        $updated_time = new Carbon($last_otp->updated_at);
+        if ($updated_time->diffInSeconds(Carbon::now()) < 120) {
+            return 'Mohon tunggu beberapa detik lagi';
+        }
+        // send OTP
+        return '';
     }
 }
