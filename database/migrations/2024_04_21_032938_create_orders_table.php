@@ -21,10 +21,12 @@ class CreateOrdersTable extends Migration
             $table->string('name')->nullable();
             $table->string('email');
             $table->string('whatsapp')->nullable();
-            $table->string('payment');
+            $table->string('payment')->nullable();
+            $table->string('payment_token')->nullable();
+            $table->string('payment_link')->nullable();
             $table->enum('payment_status', $payment_status)->default($payment_status[0]);
             $table->string('currency')->default('IDR');
-            $table->float('amount');
+            $table->float('amount')->default(0);
             $table->timestamps();
         });
     }

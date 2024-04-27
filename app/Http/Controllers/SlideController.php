@@ -74,6 +74,29 @@ class SlideController extends Controller
         $order->payment_status = $product->price ? $payment_status[1] : $payment_status[2];
         $order->save();
 
+        $client = new Client();
+        $is_production = config('midtrans.is_production');
+        $url_production = 'https://app.midtrans.com';
+        $url_sandbox = 'https://app.sandbox.midtrans.com';
+        $codeServer = base64_encode(config('midtrans.server_key').":");
+        $payload = array(
+            'transaction_details' => array(
+                'order_id' => $order->order_number,
+                'gross_amount' => $order->amount,
+            )
+        );
+        $res = $client->request('POST',($is_production ? $url_production : $url_sandbox).'/snap/v1/transactions', [
+            'headers' => [
+                'Accept' => 'application/json',
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Basic ' . $codeServer,
+                'X-Override-Notification' => 'kreatora.id, kreatora.id',
+            ],
+            'json' => $payload
+        ]);
+        $res_content = json_decode($res->getBody()->getContents());
+        dd($res_content);
+
         return response()->redirectToRoute('order.show', ['order_number' => $order->order_number]);
     }
 
