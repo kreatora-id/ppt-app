@@ -58,6 +58,7 @@ $payment_status = \App\Models\Order::PAYMENT_STATUS;
                                 <div>{{$order->whatsapp}}</div>
                             </div>
                         </div>
+                        <hr/>
                         <div class="mb-4 text-center">
                             @if($order->payment_status == $payment_status[2])
                                 <p>Silahkan download template melalui tombol dibawah ini</p>
