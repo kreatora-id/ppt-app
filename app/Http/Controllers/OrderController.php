@@ -136,9 +136,9 @@ class OrderController extends Controller
                     $update->save();
 
                     return response()->json([
-                        'status' => 'fail',
+                        'status' => 'success',
                         'update' => $update,
-                    ])->setStatusCode(400);
+                    ])->setStatusCode(200);
                 }
             }
         }
