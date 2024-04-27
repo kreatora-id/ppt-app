@@ -80,13 +80,10 @@ $payment_status = \App\Models\Order::PAYMENT_STATUS;
                                     let payButton = document.getElementById('pay-button');
                                     payButton.addEventListener('click', function () {
                                         snap.pay('{{$order->payment_token}}', {
-                                            onSuccess: function(){window.location.reload()},
-                                            onPending: function(){window.location.reload()},
-                                            onError: function(){window.location.reload()},
-                                            onClose: function(){
-                                                console.log('customer closed the popup without finishing the payment');
-                                                window.location.reload();
-                                            }
+                                            onSuccess: function(){window.location.reload();},
+                                            onPending: function(){window.location.reload();},
+                                            onError: function(){window.location.reload();},
+                                            onClose: function(){window.location.reload();}
                                         });
                                     });
                                 </script>
