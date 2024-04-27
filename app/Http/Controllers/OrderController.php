@@ -134,12 +134,17 @@ class OrderController extends Controller
                     elseif ($request->payment_type == $midtrans_payment[2]) $update->payment = $payment[2];
                     else $update->payment = $payment[0];
                     $update->save();
+
+                    return response()->json([
+                        'status' => 'fail',
+                        'update' => $update,
+                    ])->setStatusCode(400);
                 }
             }
         }
         return response()->json([
-            'status' => 'success',
+            'status' => 'fail',
             'update' => $update,
-        ]);
+        ])->setStatusCode(400);
     }
 }
