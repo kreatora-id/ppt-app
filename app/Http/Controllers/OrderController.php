@@ -119,8 +119,10 @@ class OrderController extends Controller
     public function callback(Request $request)
     {
         $update = [];
+        $message = 'Order id or signature key not found';
         if ($request->filled('order_id') && $request->filled('signature_key')) {
             $update = Order::query()->where('order_number', $request->order_id)->first();
+            $message = 'Order record not found';
             if ($update) {
                 $signature_key = hash('sha512', $update->order_number . $update->status_code . $update->amount . config('midtrans.server_key'));
                 if ($request->signature_key == $signature_key) {
@@ -134,16 +136,19 @@ class OrderController extends Controller
                     elseif ($request->payment_type == $midtrans_payment[2]) $update->payment = $payment[2];
                     else $update->payment = $payment[0];
                     $update->save();
-
+                    $message = 'Success update status';
                     return response()->json([
                         'status' => 'success',
+                        'message' => $message,
                         'update' => $update,
                     ])->setStatusCode(200);
                 }
+                $message = 'Signature not match';
             }
         }
         return response()->json([
             'status' => 'fail',
+            'message' => $message,
             'update' => $update,
         ])->setStatusCode(400);
     }
