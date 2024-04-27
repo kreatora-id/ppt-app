@@ -124,7 +124,7 @@ class OrderController extends Controller
             $update = Order::query()->where('order_number', $request->order_id)->first();
             $message = 'Order record not found';
             if ($update) {
-                $signature_key = hash('sha512', ($update->order_number . $update->status_code . $update->amount . config('midtrans.server_key')));
+                $signature_key = hash('sha512', $update->order_number . $update->status_code . sprintf("%.2f", $update->amount) . config('midtrans.server_key'));
                 if ($request->signature_key == $signature_key) {
                     $midtrans_tr_status = Order::MIDTRANS_TR_STATUS;
                     $midtrans_payment = Order::MIDTRANS_PAYMENT;
