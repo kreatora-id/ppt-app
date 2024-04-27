@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use TCG\Voyager\Models\DataRow;
 
 class SlideController extends Controller
@@ -56,7 +57,7 @@ class SlideController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'whatsapp' => 'required|string|max:255',
-            'payment' => 'required|string|in:'.implode($payment, ',').',Gratis',
+//            'payment' => 'required|string|in:'.implode($payment, ',').',Gratis',
             'slug' => 'required|string|max:255',
         ]);
 
@@ -70,33 +71,36 @@ class SlideController extends Controller
         $order->name = $request->name;
         $order->email = $request->email;
         $order->whatsapp = $request->whatsapp;
-        $order->payment = $request->payment;
+//        $order->payment = $request->payment;
         $order->payment_status = $product->price ? $payment_status[1] : $payment_status[2];
         $order->save();
 
-        $client = new Client();
-        $is_production = config('midtrans.is_production');
-        $url_production = 'https://app.midtrans.com';
-        $url_sandbox = 'https://app.sandbox.midtrans.com';
-        $codeServer = base64_encode(config('midtrans.server_key').":");
-        $payload = array(
-            'transaction_details' => array(
-                'order_id' => $order->order_number,
-                'gross_amount' => $order->amount,
-            )
-        );
-        $res = $client->request('POST',($is_production ? $url_production : $url_sandbox).'/snap/v1/transactions', [
-            'headers' => [
-                'Accept' => 'application/json',
+        if ($product->price) {
+            $is_production = config('midtrans.is_production');
+            $url_production = 'https://app.midtrans.com';
+            $url_sandbox = 'https://app.sandbox.midtrans.com';
+            $midtrans_auth = base64_encode(config('midtrans.server_key').":");
+            $payload = array(
+                'transaction_details' => array(
+                    'order_id' => $order->order_number,
+                    'gross_amount' => $order->amount,
+                )
+            );
+            $res = Http::withHeaders([
                 'Content-Type' => 'application/json',
-                'Authorization' => 'Basic ' . $codeServer,
+                'Accept' => 'application/json',
+                'Authorization' => 'Basic ' . $midtrans_auth,
                 'X-Override-Notification' => 'kreatora.id, kreatora.id',
-            ],
-            'json' => $payload
-        ]);
-        $res_content = json_decode($res->getBody()->getContents());
-        dd($res_content);
-
+            ])->post(
+                ($is_production ? $url_production : $url_sandbox).'/snap/v1/transactions',
+                $payload
+            );
+            $res_content = json_decode($res->getBody()->getContents());
+            $order->payment_token = $res_content->token;
+            $order->payment_link = $res_content->redirect_url;
+            $order->status_code = $res->getStatusCode();
+            $order->save();
+        }
         return response()->redirectToRoute('order.show', ['order_number' => $order->order_number]);
     }
 

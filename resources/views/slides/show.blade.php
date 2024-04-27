@@ -151,18 +151,18 @@
                                 <label for="whatsapp" class="form-label">No Whatsapp</label>
                                 <input type="tel" class="form-control" id="whatsapp" name="whatsapp" required>
                             </div>
-                            <div class="col-12 mb-2">
-                                <label for="payment" class="form-label">Pembayaran</label>
-                                <select class="form-select" name="payment" required>
-                                    @if($detail->price)
-                                        @foreach($payments as $payment)
-                                            <option value="{{$payment}}" {{$loop->first ? 'selected' : ''}}>{{$payment}}</option>
-                                        @endforeach
-                                    @else
-                                        <option value="Gratis" selected>Gratis</option>
-                                    @endif
-                                </select>
-                            </div>
+{{--                            <div class="col-12 mb-2">--}}
+{{--                                <label for="payment" class="form-label">Pembayaran</label>--}}
+{{--                                <select class="form-select" name="payment" required>--}}
+{{--                                    @if($detail->price)--}}
+{{--                                        @foreach($payments as $payment)--}}
+{{--                                            <option value="{{$payment}}" {{$loop->first ? 'selected' : ''}}>{{$payment}}</option>--}}
+{{--                                        @endforeach--}}
+{{--                                    @else--}}
+{{--                                        <option value="Gratis" selected>Gratis</option>--}}
+{{--                                    @endif--}}
+{{--                                </select>--}}
+{{--                            </div>--}}
                         </div>
                     </form>
                 </div>

@@ -11,7 +11,9 @@ class Order extends Model
     use HasFactory, OrderNumber;
 
     const PAYMENT = ["QRIS", "ShopeePay", "GoPay"];
-    const PAYMENT_STATUS = ["UNPAID", "PENDING", "PAID"];
+    const MIDTRANS_PAYMENT = ["qris", "shopeepay", "gopay"];
+    const PAYMENT_STATUS = ["UNPAID", "PENDING", "PAID", "CANCEL"];
+    const MIDTRANS_TR_STATUS = ["settlement", "capture", "pending", "deny", "cancel", "expire", "failure"];
     public function product() {
         return $this->belongsTo(Product::class);
     }

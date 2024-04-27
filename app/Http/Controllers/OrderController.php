@@ -115,4 +115,31 @@ class OrderController extends Controller
     {
         //
     }
+
+    public function callback(Request $request)
+    {
+        $update = [];
+        if ($request->filled('order_id') && $request->filled('signature_key')) {
+            $update = Order::query()->where('order_number', $request->order_id)->first();
+            if ($update) {
+                $signature_key = hash('sha512', $update->order_number.$update->status_code.$update->amount.config('midtrans.server_key'));
+                if ($request->signature_key == $signature_key) {
+                    $midtrans_tr_status = Order::MIDTRANS_TR_STATUS;
+                    $midtrans_payment = Order::MIDTRANS_PAYMENT;
+                    $payment_status = Order::PAYMENT_STATUS;
+                    $payment = Order::PAYMENT;
+                    if ($request->transaction_status == $midtrans_tr_status[0] || $request->transaction_status == $midtrans_tr_status[1])
+                        $update->payment_status = $payment_status[2];
+                    if ($request->payment_type == $midtrans_payment[1]) $update->payment = $payment[1];
+                    elseif ($request->payment_type == $midtrans_payment[2]) $update->payment = $payment[2];
+                    else $update->payment = $payment[0];
+                    $update->save();
+                }
+            }
+        }
+        return response()->json([
+            'status' => 'success',
+            'update' => $update,
+        ]);
+    }
 }

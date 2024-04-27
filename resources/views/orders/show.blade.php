@@ -2,7 +2,15 @@
 $payment_status = \App\Models\Order::PAYMENT_STATUS;
 @endphp
 @extends('layouts.app')
-
+@section('head')
+    @if(config('midtrans.is_production'))
+        <script type="text/javascript" src="https://app.midtrans.com/snap/snap.js"
+                data-client-key="{{config('midtrans.client_key')}}"></script>
+    @else
+        <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
+                data-client-key="{{config('midtrans.client_key')}}"></script>
+    @endif
+@endsection
 @section('content')
     <main id="main" style="margin-top: 85px;">
         <!-- ======= Featured Services Section ======= -->
@@ -29,7 +37,7 @@ $payment_status = \App\Models\Order::PAYMENT_STATUS;
                         <div class="row mb-2">
                             <div class="col-md-6">
                                 <small>Metode Pembayaran</small>
-                                <div>{{$order->payment}}</div>
+                                <div>{{$order->payment ?? '-'}}</div>
                             </div>
                             <div class="col-md-6">
                                 <small>Total Pembayaran</small>
@@ -51,7 +59,7 @@ $payment_status = \App\Models\Order::PAYMENT_STATUS;
                             </div>
                         </div>
                         <div class="mb-4 text-center">
-                            @if($order->payment_status == $payment_status[2] || true)
+                            @if($order->payment_status == $payment_status[2])
                                 <p>Silahkan download template melalui tombol dibawah ini</p>
                                 <form method="post" action="{{route('slide.download')}}">
                                     @csrf
@@ -61,9 +69,26 @@ $payment_status = \App\Models\Order::PAYMENT_STATUS;
                                         Download template
                                     </button>
                                 </form>
-                            @elseif($order->payment_status == $payment_status[1])
-                                <p>Link download template akan muncul kita pembayaran berhasil</p>
-                                <button class="kr-btn-outline-primary">Update status pembayaran</button>
+                            @elseif($order->payment_token && $order->payment_status == $payment_status[1])
+                                <p>
+                                    Silahkan lakukan pembayaran melalui tombol dibawah ini.
+                                    <br/>Link download template akan muncul ketika pembayaran telah berhasil
+                                </p>
+                                <button class="kr-btn-outline-primary" id="pay-button">Bayar</button>
+                                <script type="text/javascript">
+                                    let payButton = document.getElementById('pay-button');
+                                    payButton.addEventListener('click', function () {
+                                        snap.pay('{{$order->payment_token}}', {
+                                            onSuccess: function(){window.location.reload()},
+                                            onPending: function(){window.location.reload()},
+                                            onError: function(){window.location.reload()},
+                                            onClose: function(){
+                                                console.log('customer closed the popup without finishing the payment');
+                                                window.location.reload();
+                                            }
+                                        });
+                                    });
+                                </script>
                             @endif
                         </div>
                     </div>

@@ -27,6 +27,7 @@ class CreateOrdersTable extends Migration
             $table->enum('payment_status', $payment_status)->default($payment_status[0]);
             $table->string('currency')->default('IDR');
             $table->float('amount')->default(0);
+            $table->integer('status_code')->nullable();
             $table->timestamps();
         });
     }
