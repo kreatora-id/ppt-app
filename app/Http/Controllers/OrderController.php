@@ -150,7 +150,7 @@ class OrderController extends Controller
 
     public function redirect_finish(Request $request)
     {
-        if ($request->filled(order_id)) {
+        if ($request->filled('order_id')) {
             $order = Order::query()->where('order_number', $request->order_id)->first();
             if ($order) {
                 return redirect()->route('order.show', ['order_number' => $order->order_number]);
