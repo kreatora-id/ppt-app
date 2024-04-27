@@ -75,7 +75,7 @@ $payment_status = \App\Models\Order::PAYMENT_STATUS;
                                     Silahkan lakukan pembayaran melalui tombol dibawah ini.
                                     <br/>Link download template akan muncul ketika pembayaran telah berhasil
                                 </p>
-                                <button class="kr-btn-outline-primary" id="pay-button">Bayar</button>
+                                <button class="kr-btn-outline-primary" id="pay-button">Lihat halaman pembayaran</button>
                                 <script type="text/javascript">
                                     let payButton = document.getElementById('pay-button');
                                     payButton.addEventListener('click', function () {
