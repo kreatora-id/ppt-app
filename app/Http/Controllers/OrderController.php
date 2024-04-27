@@ -147,4 +147,15 @@ class OrderController extends Controller
             'update' => $update,
         ])->setStatusCode(400);
     }
+
+    public function redirect_finish(Request $request)
+    {
+        if ($request->filled(order_id)) {
+            $order = Order::query()->where('order_number', $request->order_id)->first();
+            if ($order) {
+                return redirect()->route('order.show', ['order_number' => $order->order_number]);
+            }
+        }
+        return redirect()->route('orders.index');
+    }
 }

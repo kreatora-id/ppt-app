@@ -25,6 +25,7 @@ Route::post('slides/download', [Controllers\SlideController::class, 'download'])
 Route::get('slides/{slug}', [Controllers\SlideController::class, 'show'])->name('slide.show');
 
 Route::get('order', [Controllers\OrderController::class, 'index'])->name('order.index');
+Route::get('order/redirect_finish', [Controllers\OrderController::class, 'redirect_finish'])->name('order.redirect_finish');
 Route::get('order/{order_number}', [Controllers\OrderController::class, 'show'])->name('order.show');
 
 
