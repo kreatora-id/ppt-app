@@ -156,6 +156,6 @@ class OrderController extends Controller
                 return redirect()->route('order.show', ['order_number' => $order->order_number]);
             }
         }
-        return redirect()->route('orders.index');
+        return redirect()->route('order.index');
     }
 }
