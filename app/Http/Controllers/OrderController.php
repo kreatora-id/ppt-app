@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Otp;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -20,13 +21,22 @@ class OrderController extends Controller
                 // check is email has orderan
                 if ($order) {
                     $is_send_code = true;
-                    if ($request->filled('code')) {
-                        $orders = Order::query()->where('email', $request->search)
-                            ->with('product:id,name,slug')->orderByDesc('id')->get();
+                    if ($request->filled('code') && $request->filled('otp')) {
+                        $verify_otp = Otp::query()->where(['unique_code' => $request->code, 'otp' => $request->otp])
+                            ->first();
+                        if ($verify_otp) {
+                            $orders = Order::query()->where('email', $request->search)
+                                ->with('product:id,name,slug')->orderByDesc('id')->get();
+                        } else {
+                            $message = 'OTP tidak valid silahkan meminta kode otp lagi';
+                        }
+                    } else {
+                        // flow send OTP to mail
                     }
                 } else {
                     $message =  'Pesanan dengan email '.$request->search.' tidak ditemukan';
                 }
+                // end email has orderan
             } else {
                 // using order number
                 $order = Order::query()->select(['id', 'order_number'])
