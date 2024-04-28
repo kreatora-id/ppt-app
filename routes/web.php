@@ -28,6 +28,7 @@ Route::get('order', [Controllers\OrderController::class, 'index'])->name('order.
 Route::get('order/redirect_finish', [Controllers\OrderController::class, 'redirect_finish'])->name('order.redirect_finish');
 Route::get('order/{order_number}', [Controllers\OrderController::class, 'show'])->name('order.show');
 
+Route::post('resend_otp', [Controllers\OtpController::class, 'resendOtp'])->name('order.resend_otp');
 
 Route::get('origin', function () {
     return view('enno_template_origin');
