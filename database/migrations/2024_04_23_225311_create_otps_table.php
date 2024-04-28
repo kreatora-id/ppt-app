@@ -19,6 +19,7 @@ class CreateOtpsTable extends Migration
             $table->string('unique_code');
             $table->string('otp');
             $table->string('email');
+            $table->dateTime('last_sent')->nullable();
             $table->dateTime('expired_at');
             $table->timestamps();
         });

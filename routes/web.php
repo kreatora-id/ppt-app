@@ -35,3 +35,7 @@ Route::get('origin', function () {
 
 Route::get('storage/{params1}/{params2?}/{params3?}/{params4?}/{params5?}/{params6?}/{params7?}',
     [Controllers\ImageController::class, 'show'])->name('storage');
+
+Route::get('check_mail', function (){
+    return view('mails.email_otp_code', ['code' => '8765']);
+});
