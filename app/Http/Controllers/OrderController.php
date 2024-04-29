@@ -39,8 +39,9 @@ class OrderController extends Controller
                     ->where('email', $request->search)->first();
                 // check is email has orderan
                 if ($order) {
-                    $unique_code = Otp::query()->select('unique_code')->where('email', $order->email)
-                        ->latest()->first()->unique_code;
+                    $otp_unique_code = Otp::query()->select('unique_code')->where('email', $order->email)
+                        ->latest()->first();
+                    $unique_code = $otp_unique_code ? $otp_unique_code->unique_code : '';
                     if ($request->filled('code') && $request->filled('otp')) {
                         $verify_otp = Otp::query()->where([
                             'unique_code' => $request->code,
