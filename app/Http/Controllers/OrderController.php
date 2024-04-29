@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\OtpHelper;
 use App\Models\Order;
 use App\Models\Otp;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -25,22 +26,32 @@ class OrderController extends Controller
     {
         $orders = [];
         $message = '';
+        $unique_code = '';
         $is_send_code = false;
+        $using_email = false;
         if ($request->filled('search')) {
             if (filter_var($request->search, FILTER_VALIDATE_EMAIL)) {
                 // using email
+                $using_email = true;
                 $order = Order::query()->select(['id', 'order_number', 'email'])
                     ->where('email', $request->search)->first();
                 // check is email has orderan
                 if ($order) {
+                    $unique_code = Otp::query()->select('unique_code')->where('email', $order->email)
+                        ->latest()->first()->unique_code;
                     if ($request->filled('code') && $request->filled('otp')) {
-                        $verify_otp = Otp::query()->where(['unique_code' => $request->code, 'otp' => $request->otp])
+                        $verify_otp = Otp::query()->where([
+                            'unique_code' => $request->code,
+                            'otp' => $request->otp
+                        ])->whereTime('expired_at', '>', Carbon::now()->subSeconds(1800)->format('H:i:s'))
                             ->first();
                         if ($verify_otp) {
                             $orders = Order::query()->where('email', $request->search)
                                 ->with('product:id,name,slug')->orderByDesc('id')->get();
                         } else {
-                            $message = 'OTP tidak valid silahkan meminta kode otp lagi';
+                            $message = 'Kode OTP tidak valid, kode terbaru telah kami kirim ulang silahkan cek email anda';
+                            (new OtpHelper)->resendOTP($order->email, '');
+                            $is_send_code = true;
                         }
                     } else {
                         $message = (new OtpHelper)->resendOTP($order->email, '');
@@ -64,7 +75,9 @@ class OrderController extends Controller
         return response()->view('orders.index', [
             'orders' => $orders,
             'message' => $message,
+            'unique_code' => $unique_code,
             'is_send_code' => $is_send_code,
+            'using_email' => $using_email,
         ]);
     }
 

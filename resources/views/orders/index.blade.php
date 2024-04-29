@@ -10,7 +10,8 @@
                     <form method="post" action="{{route('order.search')}}">
                         @csrf
                         <div class="row mb-3">
-                            @if($is_send_code)
+                            @if($using_email)
+                                <input type="hidden" name="code" value="{{$unique_code}}">
                                 <div class="col-md-5 mb-2">
                                     <input type="text" class="form-control" placeholder="Masukkan no. pesanan anda"
                                            name="search" style="margin-right: 15px;"
@@ -18,7 +19,7 @@
                                 </div>
                                 <div class="col-md-5 mb-2">
                                     <input type="text" class="form-control" placeholder="Masukkan kode verifikasi"
-                                           name="code" style="margin-right: 15px;" value="{{app('request')->input('code')}}">
+                                           name="otp" style="margin-right: 15px;" value="{{app('request')->input('otp')}}">
                                 </div>
                             @else
                                 <div class="col-md-10 mb-2">
@@ -32,10 +33,13 @@
                                 </button>
                             </div>
                         </div>
-                        @if($is_send_code && !app('request')->input('code'))
+                        @if($is_send_code)
                         <div class="alert alert-warning" role="alert">
                             <small>Kami telah mengirimkan kode verifikasi ke email {{app('request')->input('search')}}.&nbsp;
-                                Jika belum menerima silahkan <a href="#">kirim ulang</a></small>
+                                Silahkan cek kotak masuk dan kotak spam email anda. &nbsp;
+                                Jika belum menerima silahkan meminta ulang dengan klik tombol&nbsp;
+                                <button type="submit" class="btn btn-link" style="padding: 0; vertical-align: unset;">Cari</button>
+                            </small>
                         </div>
                         @endif
                     </form>
