@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\OtpHelper;
 use App\Models\Order;
 use App\Models\Otp;
 use Illuminate\Http\Request;
@@ -26,13 +27,12 @@ class OrderController extends Controller
         $message = '';
         $is_send_code = false;
         if ($request->filled('search')) {
-            if (filter_var($request->search, FILTER_VALIDATE_EMAIL) && false) {
+            if (filter_var($request->search, FILTER_VALIDATE_EMAIL)) {
                 // using email
                 $order = Order::query()->select(['id', 'order_number', 'email'])
                     ->where('email', $request->search)->first();
                 // check is email has orderan
                 if ($order) {
-                    $is_send_code = true;
                     if ($request->filled('code') && $request->filled('otp')) {
                         $verify_otp = Otp::query()->where(['unique_code' => $request->code, 'otp' => $request->otp])
                             ->first();
@@ -43,7 +43,8 @@ class OrderController extends Controller
                             $message = 'OTP tidak valid silahkan meminta kode otp lagi';
                         }
                     } else {
-                        // flow send OTP to mail
+                        $message = (new OtpHelper)->resendOTP($order->email, '');
+                        $is_send_code = true;
                     }
                 } else {
                     $message =  'Pesanan dengan email '.$request->search.' tidak ditemukan';
