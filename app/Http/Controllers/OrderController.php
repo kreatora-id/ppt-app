@@ -8,7 +8,19 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function index(Request $request)
+    public function index()
+    {
+        $orders = [];
+        $message = '';
+
+        return response()->view('orders.index', [
+            'orders' => $orders,
+            'message' => $message,
+            'is_send_code' => false,
+        ]);
+    }
+
+    public function search(Request $request)
     {
         $orders = [];
         $message = '';

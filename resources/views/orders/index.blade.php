@@ -7,7 +7,8 @@
             <div class="container my-4">
                 <div class="mb-4">
                     <h4 class="title">Lihat Pesananmu</h4>
-                    <form>
+                    <form method="post" action="{{route('order.search')}}">
+                        @csrf
                         <div class="row mb-3">
                             @if($is_send_code)
                                 <div class="col-md-5 mb-2">
