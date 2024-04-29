@@ -44,6 +44,7 @@ class OrderController extends Controller
                     $unique_code = $otp_unique_code ? $otp_unique_code->unique_code : '';
                     if ($request->filled('code') && $request->filled('otp')) {
                         $verify_otp = Otp::query()->where([
+                            'email' => $request->search,
                             'unique_code' => $request->code,
                             'otp' => $request->otp
                         ])->whereTime('expired_at', '>', Carbon::now()->subSeconds(1800)->format('H:i:s'))
