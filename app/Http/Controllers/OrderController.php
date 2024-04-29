@@ -18,7 +18,9 @@ class OrderController extends Controller
         return response()->view('orders.index', [
             'orders' => $orders,
             'message' => $message,
+            'unique_code' => '',
             'is_send_code' => false,
+            'using_email' => false,
         ]);
     }
 
