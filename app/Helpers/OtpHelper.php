@@ -23,15 +23,15 @@ class OtpHelper
         $new_otp->last_sent = Carbon::now();
         $new_otp->expired_at = Carbon::now()->addSeconds(1800);
         $new_otp->save();
-
         return $this->sendOTP($new_otp->email, $new_otp->otp);
     }
 
     public function resendOTP(string $email, string $reference_id)
     {
         if (!$email) return 'Email is required';
-        $last_otp = Otp::query()->where('email', $email)->orWhere('reference_id', $reference_id)
-            ->latest()->first();
+        $last_otp = Otp::query()->where('email', $email)->when($reference_id, function ($query) use ($reference_id) {
+            return $query->where('reference_id', $reference_id);
+        })->latest()->first();
         if (!$last_otp) {
             return $this->generateOTP($email, $reference_id);
         }
