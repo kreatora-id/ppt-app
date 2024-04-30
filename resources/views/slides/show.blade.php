@@ -29,9 +29,8 @@
                                         <div class="carousel-inner">
                                             @foreach(json_decode($detail->images) as $key => $image)
                                                 <div class="carousel-item {{$key == 0 ? 'active' : ''}}">
-                                                    <img class="d-block w-100"
-                                                         src="{{asset('storage/'.$image)}}"
-                                                         alt="Image {{$key+1}}">
+                                                    <img class="d-block w-100" src="{{asset('storage/'.$image)}}"
+                                                        alt="Image {{$key+1}}">
                                                 </div>
                                             @endforeach
                                         </div>
@@ -57,6 +56,13 @@
                                     <span class="fontSize24" style="text-decoration: line-through">
                                         {{Helper::numberToCurrency($detail->regular_price)}}
                                     </span>
+                                </div>
+                            @endif
+                            @if($errors->any())
+                                <div class="alert alert-danger" role="alert">
+                                    <ul style="margin-bottom: 0;">
+                                        {!! implode('', $errors->all('<li>:message</li>')) !!}
+                                    </ul>
                                 </div>
                             @endif
                             <button class="kr-btn-outline-primary w-100 fontSize18" type="button" data-bs-toggle="modal"
@@ -151,6 +157,7 @@
                                 <label for="whatsapp" class="form-label">No Whatsapp</label>
                                 <input type="tel" class="form-control" id="whatsapp" name="whatsapp" required>
                             </div>
+                            {!! RecaptchaV3::field('register') !!}
 {{--                            <div class="col-12 mb-2">--}}
 {{--                                <label for="payment" class="form-label">Pembayaran</label>--}}
 {{--                                <select class="form-select" name="payment" required>--}}

@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Otp;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Lunaweb\RecaptchaV3\Facades\RecaptchaV3;
 
 class OrderController extends Controller
 {
@@ -26,6 +27,13 @@ class OrderController extends Controller
 
     public function search(Request $request)
     {
+        $request->validate([
+            'search' => 'required|string|max:255',
+            'g-recaptcha-response' => 'required'
+        ]);
+        $score = RecaptchaV3::verify($request->get('g-recaptcha-response'), 'register');
+        if($score < 0.5) return redirect()->back();
+
         $orders = [];
         $message = '';
         $unique_code = '';
@@ -62,7 +70,7 @@ class OrderController extends Controller
                         $is_send_code = true;
                     }
                 } else {
-                    $message =  'Pesanan dengan email '.$request->search.' tidak ditemukan';
+                    $message =  'Pesanan dengan email "'.$request->search.'" tidak ditemukan';
                 }
                 // end email has orderan
             } else {
@@ -72,7 +80,7 @@ class OrderController extends Controller
                 if ($order) {
                     return response()->redirectToRoute('order.show', ['order_number' => $order->order_number]);
                 } else {
-                    $message =  'Pesanan dengan nomor '.$request->search.' tidak ditemukan';
+                    $message =  'Pesanan dengan nomor "'.$request->search.'" tidak ditemukan';
                 }
             }
         }

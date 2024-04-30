@@ -7,6 +7,7 @@ use App\Models\Product;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Lunaweb\RecaptchaV3\Facades\RecaptchaV3;
 use TCG\Voyager\Models\DataRow;
 
 class SlideController extends Controller
@@ -58,14 +59,17 @@ class SlideController extends Controller
 
     public function checkout(Request $request)
     {
-        $payment = Order::PAYMENT;
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'whatsapp' => 'required|string|max:255',
 //            'payment' => 'required|string|in:'.implode($payment, ',').',Gratis',
             'slug' => 'required|string|max:255',
+            'g-recaptcha-response' => 'required'
         ]);
+
+        $score = RecaptchaV3::verify($request->get('g-recaptcha-response'), 'register');
+        if($score < 0.5) return redirect()->back();
 
         $product = Product::query()->select(['id', 'slug', 'price'])->where('slug', $request->slug)->first();
         if (!$product) return redirect()->back();

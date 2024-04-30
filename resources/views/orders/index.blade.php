@@ -7,6 +7,13 @@
             <div class="container my-4">
                 <div class="mb-4">
                     <h4 class="title">Lihat Pesananmu</h4>
+                    @if($errors->any())
+                        <div class="alert alert-danger" role="alert">
+                            <ul style="margin-bottom: 0;">
+                                {!! implode('', $errors->all('<li>:message</li>')) !!}
+                            </ul>
+                        </div>
+                    @endif
                     <form method="post" action="{{route('order.search')}}">
                         @csrf
                         <div class="row mb-3">
@@ -27,6 +34,7 @@
                                            name="search" style="margin-right: 15px;" value="{{app('request')->input('search')}}">
                                 </div>
                             @endif
+                            {!! RecaptchaV3::field('register') !!}
                             <div class="col-md-2 mb-2">
                                 <button type="submit" class="kr-btn-outline-primary w-100">
                                     <i class="bi bi-search"></i>&nbsp;Cari

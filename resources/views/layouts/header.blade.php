@@ -25,11 +25,6 @@
     <!-- Template Main CSS File -->
     <link href="{{asset('/assets_homepage/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('/assets_homepage/css/custom.css')}}" rel="stylesheet">
+    {!! RecaptchaV3::initJs() !!}
     @yield('head')
-    <!-- =======================================================
-    * Template Name: eNno - v4.7.0
-    * Template URL: https://bootstrapmade.com/enno-free-simple-bootstrap-template/
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
 </head>
