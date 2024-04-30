@@ -25,6 +25,6 @@
     <!-- Template Main CSS File -->
     <link href="{{asset('/assets_homepage/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('/assets_homepage/css/custom.css')}}" rel="stylesheet">
-    {!! RecaptchaV3::initJs() !!}
+    {!! \Lunaweb\RecaptchaV3\Facades\RecaptchaV3::initJs() !!}
     @yield('head')
 </head>
