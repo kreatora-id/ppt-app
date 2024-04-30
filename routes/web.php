@@ -41,3 +41,12 @@ Route::get('storage/{params1}/{params2?}/{params3?}/{params4?}/{params5?}/{param
 Route::get('check_mail', function (){
     return view('mails.email_otp_code', ['code' => '8765']);
 });
+
+Route::get('clear_cache', function () {
+    \Artisan::call('cache:clear');
+    dd("Cache is cleared");
+});
+Route::get('clear_config', function () {
+    \Artisan::call('config:clear');
+    dd("Config is cleared");
+});
