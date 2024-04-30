@@ -14,7 +14,7 @@ use App\Http\Controllers;
 |
 */
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'pusbangnis'], function () {
     Voyager::routes();
 });
 
