@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('head')
-    {!! RecaptchaV3::initJs() !!}
+    {!! \RecaptchaV3::initJs() !!}
 @endsection
 @section('content')
     <main id="main" style="margin-top: 85px;">

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('head')
-    {!! RecaptchaV3::initJs() !!}
+    {!! \RecaptchaV3::initJs() !!}
     <style>
         iframe {
             width: 100%;
