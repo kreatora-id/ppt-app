@@ -45,6 +45,7 @@ class SlideController extends Controller
         if (!$detail) abort(404);
         $tags = $detail->tags ? json_decode($detail->tags) : [];
         $others = Product::query()->select(['name', 'description', 'tags', 'type', 'slug', 'images'])
+            ->whereKeyNot($detail->id)
             ->when(count($tags), function (Builder $query) use ($tags) {
                 return $query->whereJsonContains('tags', $tags[0]);
             })->inRandomOrder()->limit(3)->get();
