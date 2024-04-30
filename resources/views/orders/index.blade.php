@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('head')
-    {!! \RecaptchaV3::initJs() !!}
+    {!! $captcha_init !!}
 @endsection
 @section('content')
     <main id="main" style="margin-top: 85px;">
@@ -36,7 +36,7 @@
                                            name="search" style="margin-right: 15px;" value="{{app('request')->input('search')}}">
                                 </div>
                             @endif
-                            {!! RecaptchaV3::field('register') !!}
+                            {!! $captcha_field !!}
                             <div class="col-md-2 mb-2">
                                 <button type="submit" class="kr-btn-outline-primary w-100">
                                     <i class="bi bi-search"></i>&nbsp;Cari

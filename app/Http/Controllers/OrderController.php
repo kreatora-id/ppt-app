@@ -22,6 +22,8 @@ class OrderController extends Controller
             'unique_code' => '',
             'is_send_code' => false,
             'using_email' => false,
+            'captcha_init' => RecaptchaV3::initJs(),
+            'captcha_field' => RecaptchaV3::field('register'),
         ]);
     }
 
@@ -90,6 +92,8 @@ class OrderController extends Controller
             'unique_code' => $unique_code,
             'is_send_code' => $is_send_code,
             'using_email' => $using_email,
+            'captcha_init' => RecaptchaV3::initJs(),
+            'captcha_field' => RecaptchaV3::field('register'),
         ]);
     }
 

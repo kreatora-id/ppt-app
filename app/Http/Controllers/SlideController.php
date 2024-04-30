@@ -54,7 +54,8 @@ class SlideController extends Controller
             'detail' => $detail,
             'others' => $others,
             'payments' => Order::PAYMENT,
-            'captcha_init' => RecaptchaV3::initJs()
+            'captcha_init' => RecaptchaV3::initJs(),
+            'captcha_field' => RecaptchaV3::field('register'),
         ]);
     }
 

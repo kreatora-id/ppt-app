@@ -158,7 +158,7 @@
                                 <label for="whatsapp" class="form-label">No Whatsapp</label>
                                 <input type="tel" class="form-control" id="whatsapp" name="whatsapp" required>
                             </div>
-                            {!! RecaptchaV3::field('register') !!}
+                            {!! $captcha_field !!}
 {{--                            <div class="col-12 mb-2">--}}
 {{--                                <label for="payment" class="form-label">Pembayaran</label>--}}
 {{--                                <select class="form-select" name="payment" required>--}}
