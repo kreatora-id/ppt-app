@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Product;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use TCG\Voyager\Models\DataRow;
@@ -42,7 +43,11 @@ class SlideController extends Controller
     {
         $detail = Product::query()->where('slug', $slug)->first();
         if (!$detail) abort(404);
-        $others = Product::query()->select(['name', 'description', 'tags', 'type', 'slug', 'images'])->limit(3)->get();
+        $tags = $detail->tags ? json_decode($detail->tags) : [];
+        $others = Product::query()->select(['name', 'description', 'tags', 'type', 'slug', 'images'])
+            ->when(count($tags), function (Builder $query) use ($tags) {
+                return $query->whereJsonContains('tags', $tags[0]);
+            })->inRandomOrder()->limit(3)->get();
         return view('slides.show', [
             'detail' => $detail,
             'others' => $others,
