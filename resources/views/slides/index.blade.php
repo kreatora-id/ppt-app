@@ -18,7 +18,9 @@
 @endphp
 
 @extends('layouts.app')
-
+@section('head')
+    <title>Kreatora - Download template power point PPT dan google slide hanya disini</title>
+@endsection
 @section('content')
     <!-- ======= Hero Section ======= -->
     <div id="hero" class="d-flex align-items-center section-bg">

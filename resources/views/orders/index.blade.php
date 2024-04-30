@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('head')
     {!! $captcha_init !!}
+    <title>Kreatora - Semua Pesananku</title>
 @endsection
 @section('content')
     <main id="main" style="margin-top: 85px;">

@@ -7,6 +7,7 @@
             width: 100%;
         }
     </style>
+    <title>Kreatora - Detail slides - {{$detail->name}}</title>
 @endsection
 
 @section('content')

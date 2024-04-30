@@ -10,6 +10,7 @@ $payment_status = \App\Models\Order::PAYMENT_STATUS;
         <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
                 data-client-key="{{config('midtrans.client_key')}}"></script>
     @endif
+    <title>Kreatora - Detail pesananku dengan nomor {{$order->order_number}}</title>
 @endsection
 @section('content')
     <main id="main" style="margin-top: 85px;">
