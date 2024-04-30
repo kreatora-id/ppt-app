@@ -12,8 +12,8 @@
                     <a class="nav-link scrollto {{\Request::route()->getName() == 'order.index' ? 'active' : ''}}"
                        href="{{route('order.index')}}">Pesananmu</a>
                 </li>
-                <li><a class="nav-link scrollto " href="/blog">Blog</a></li>
-                <li><a class="getstarted scrollto" href="/campaign">App Kreatora</a></li>
+{{--                <li><a class="nav-link scrollto " href="/blog">Blog</a></li>--}}
+{{--                <li><a class="getstarted scrollto" href="/campaign">App Kreatora</a></li>--}}
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
