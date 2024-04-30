@@ -29,7 +29,7 @@ class SlideController extends Controller
                 $products = $products->orWhereJsonContains('tags', $tags[$i]);
             }
         }
-        $products = $products
+        $products = $products->latest()
             ->paginate(9, '*', 'page', $request->filled('page') ? $request->page : 1);
 
         return view('slides.index', [
