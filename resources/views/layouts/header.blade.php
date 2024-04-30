@@ -27,17 +27,11 @@
     <link href="{{asset('/assets_homepage/css/custom.css')}}" rel="stylesheet">
     @yield('head')
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-416WB8DX2S"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XEQ7PXF5SB"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-416WB8DX2S');
+        gtag('config', 'G-XEQ7PXF5SB');
     </script>
-    <!-- =======================================================
-    * Template Name: eNno - v4.7.0
-    * Template URL: https://bootstrapmade.com/enno-free-simple-bootstrap-template/
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
 </head>
