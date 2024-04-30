@@ -8,23 +8,26 @@
         <div class="row">
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
                 <div class="icon-box">
-                    <div class="icon"><i class="bi bi-graph-up-arrow"></i></div>
-                    <h4><a href="">Transparan</a></h4>
-                    <p>Pantau proses pengembangan dari pembuatan hingga game bisa di rilis</p>
+                    <div class="icon"><i class="bi bi-file-slides"></i></div>
+                    <h4><a href="">Beragam</a></h4>
+                    <p>Koleksi template kami sangat beragam mulai dari Edukasi, Bisnis, Industri, Budaya, Travel, Food,
+                        Medical, Teknologi, Bahkan Pitch deck dari berbagai start-up terkemuka di dunia</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
                 <div class="icon-box">
-                    <div class="icon"><i class="bi bi-controller"></i></div>
+                    <div class="icon"><i class="bi bi-patch-check-fill"></i></div>
                     <h4><a href="">Eksklusif</a></h4>
-                    <p>Temukan game eksklusif yang belum pernah kamu lihat sebelumnya</p>
+                    <p>Template presentasi eksklusif yang susah ditemukan ditempat lain. Dapatkan template premium kami
+                        yang bersifat ekslusif untuk menunjang presentasi anda menjadi lebih baik</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
                 <div class="icon-box">
-                    <div class="icon"><i class="bi bi-wallet"></i></div>
-                    <h4><a href="">Jaminan uang kembali</a></h4>
-                    <p>Jaminan uang kembali jika game yang kamu dukung tidak memenuhi target campaign</p>
+                    <div class="icon"><i class="bi bi-cloud-download"></i></div>
+                    <h4><a href="">Easy Download</a></h4>
+                    <p>Unduh template kami dengan mudah, cukup lihat detail pesananmu dan klik download template.
+                        Modifikasi untuk menjadikan presentasi anda lebih menarik audiens</p>
                 </div>
             </div>
         </div>

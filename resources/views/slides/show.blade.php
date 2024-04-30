@@ -18,7 +18,7 @@
                         <div class="icon-box">
                             <div class="icon position-relative">
                                 @if($detail->type == 'Premium')
-                                    <i class="bx bxs-crown position-absolute fontSize32" style="top:10px; right: 10px;"></i>
+                                    <i class="bi bi-patch-check-fill position-absolute fontSize32" style="top:10px; right: 10px;"></i>
                                 @endif
                                 @if($detail->embed)
                                     <div>
@@ -87,7 +87,7 @@
                                 <div class="icon-box">
                                     <div class="icon position-relative">
                                         @if($other->type == 'Premium')
-                                            <i class="bx bxs-crown position-absolute"
+                                            <i class="bi bi-patch-check-fill position-absolute"
                                                style="top:10px; right: 10px; font-size: 32px"
                                             ></i>
                                         @endif

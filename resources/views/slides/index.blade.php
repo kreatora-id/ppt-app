@@ -57,7 +57,7 @@
                                 ])}}"
                                class="kr-btn-outline-primary {{ app('request')->input('type') == 'premium' ? 'active' : '' }}"
                             >
-                                <i class="bx bxs-crown" style="margin-right: 2px;"></i>
+                                <i class="bi bi-patch-check-fill" style="margin-right: 2px;"></i>
                                 Premium
                             </a>
                         </div>
@@ -98,7 +98,7 @@
                                 <div class="icon-box">
                                     <div class="icon position-relative">
                                         @if($product->type == 'Premium')
-                                            <i class="bx bxs-crown position-absolute"
+                                            <i class="bi bi-patch-check-fill position-absolute"
                                                style="top:10px; right: 10px; font-size: 32px"
                                             ></i>
                                         @endif

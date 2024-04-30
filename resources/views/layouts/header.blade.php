@@ -2,7 +2,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Kreatora - Support kreatifitas indonesia</title>
+    <title>Kreatora - Download template power point PPT dan google slide hanya disini</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
