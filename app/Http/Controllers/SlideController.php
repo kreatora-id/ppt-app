@@ -53,7 +53,8 @@ class SlideController extends Controller
         return view('slides.show', [
             'detail' => $detail,
             'others' => $others,
-            'payments' => Order::PAYMENT
+            'payments' => Order::PAYMENT,
+            'captcha_init' => RecaptchaV3::initJs()
         ]);
     }
 
