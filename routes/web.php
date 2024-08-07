@@ -14,6 +14,7 @@ use App\Http\Controllers;
 |
 */
 
+//update route 2
 Route::group(['prefix' => 'pusbangnis'], function () {
     Voyager::routes();
 });
