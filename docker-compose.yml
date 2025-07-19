@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
   ppt_app:
     image: ppt_app_image
@@ -16,9 +18,9 @@ services:
     env_file:
       - .env
     volumes:
-      - ppt_db_data:/var/lib/mariadb/data
+      - ppt_db_data:/var/lib/mysql  # path ini seharusnya /var/lib/mysql, bukan /var/lib/mariadb/data
     ports:
       - "3308:3306"
-	
+
 volumes:
   ppt_db_data:
