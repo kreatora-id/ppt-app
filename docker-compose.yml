@@ -11,6 +11,8 @@ services:
       - .env
     depends_on:
       - ppt_db
+    volumes:
+      - ./.env:/app/.env
 
   ppt_db:
     image: mariadb:11.4.5
